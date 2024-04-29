@@ -15,14 +15,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = get_user_model().objects.create(
-            username=validated_data["username"],
-            email=validated_data["email"],
-            is_verified=validated_data["is_verified"] if "is_verified" in validated_data else False,
+            username=validated_data.pop("username"),
+            email=validated_data.pop("email").lower(),
+            is_verified=validated_data.pop("is_verified") if "is_verified" in validated_data else False,
         )
-
-        user.set_password(validated_data["password"])
-        user.save()
-
+        user.set_password(validated_data.pop("password"))
+        super().update(user, validated_data)
         return user
 
     def validate(self, attrs):

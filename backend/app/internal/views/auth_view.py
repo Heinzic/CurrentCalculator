@@ -56,7 +56,7 @@ class EmailConfirmAPIView(APIView):
 
             user = get_user_model().objects.get(id=payload["user_id"])
             user.is_verified = True
-            user.email = request.query_params.get("change-to")
+            user.email = request.query_params.get("change-to").lower()
             user.save()
 
             return Response({"OK": "Successfully activated"}, status=status.HTTP_200_OK)

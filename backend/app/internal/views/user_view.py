@@ -17,7 +17,7 @@ class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
 
 
 class UserListAPIView(ListAPIView):
-    permission_classes = [AdminAccessPermission]
+    permission_classes = [IsAuthenticated, AdminAccessPermission]
     serializer_class = UserSerializer
     queryset = get_user_model().objects.all()
 
