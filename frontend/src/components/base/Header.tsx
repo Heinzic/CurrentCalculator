@@ -6,7 +6,7 @@ function Header() {
             <header className="bg-[#454F55] py-2 text-white">
                 <div className="flex flex-row justify-between mx-[90px]">
                     <div className="flex flex-row justify-between gap-[20px]">
-                        <NavLink to={'/'} className="hover:text-[#97989A]">
+                        <NavLink to={'/main'} className="hover:text-[#97989A]">
                             Все расчеты
                         </NavLink>
                         <svg width="1" height="33" viewBox="0 0 1 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@ function Header() {
                             Создать обьект 
                         </NavLink>
                     </div>
-                    <NavLink to={'/'} className="flex flex-row gap-[15px]">
+                    <NavLink to={'/profile'} className="flex flex-row gap-[15px] hover:text-[#97989A]">
                         Иван Иванов
                         <svg width="37" height="36" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="17.7693" cy="10.1508" rx="11.9538" ry="10.1508" fill="#FBFAFA"/>

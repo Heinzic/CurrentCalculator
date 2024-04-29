@@ -1,6 +1,6 @@
 function Footer() {
     return(
-        <footer className="w-[100%] h-[100px] bg-[#828282]">
+        <footer className="w-[100%] h-[100px] bg-[#454F55]">
         </footer>
     )
 }
