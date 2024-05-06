@@ -14,4 +14,4 @@ class ValidLicensePermission(permissions.BasePermission):
     message = "Your license has expired, please contact the administrator"
 
     def has_permission(self, request, view):
-        return request.user.license_period >= datetime.date.today()
+        return request.user.license_period is not None and request.user.license_period >= datetime.date.today()
