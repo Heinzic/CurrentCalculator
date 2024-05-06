@@ -1,6 +1,5 @@
+from app.internal.views.object_view import CreateObjectAPIView, ListObjectAPIView, ObjectDetailAPIView
 from django.urls import path
-
-from app.internal.views.object_view import ObjectDetailAPIView, CreateObjectAPIView, ListObjectAPIView
 
 urlpatterns = [
     path("create/", CreateObjectAPIView.as_view(), name="object-create"),

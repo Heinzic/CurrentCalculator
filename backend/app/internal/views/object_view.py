@@ -1,9 +1,8 @@
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListAPIView
-from rest_framework.permissions import IsAuthenticated
-
 from app.internal.models.object_model import Object
 from app.internal.serializers.object_serializer import ObjectSerializer
 from app.internal.utils.permissions import ValidLicensePermission
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 
 class ListObjectAPIView(ListAPIView):
