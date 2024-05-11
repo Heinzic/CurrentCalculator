@@ -3,7 +3,7 @@ import UnloggedHeader from "../base/UnloggedHeader"
 import Footer from "../base/Footer"
 import { IUserRegister } from "../../store/models/IAuth"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useRegisterUserMutation } from "../../store/services/AuthAPI"
+import { useRegisterUserMutation } from "../../store/apis/AuthAPI"
 
 interface IRegisterForm extends IUserRegister {}
 

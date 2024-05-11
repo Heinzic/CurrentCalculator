@@ -3,7 +3,7 @@ import UnloggedHeader from "../base/UnloggedHeader"
 import Footer from "../base/Footer"
 
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useLogInUserMutation } from "../../store/services/AuthAPI"
+import { useLogInUserMutation } from "../../store/apis/AuthAPI"
 
 interface ILoginForm {
     username:'',

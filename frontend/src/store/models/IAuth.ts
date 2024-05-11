@@ -1,7 +1,9 @@
+import { IToken } from "./IToken"
+
 export interface ILogin {
     username: string,
     password: string,
-    tokens:string
+    tokens:IToken
 }
 
 export interface IUserRegister {
@@ -19,8 +21,6 @@ export interface IUser {
     email?: string,
     first_name?: string,
     last_name?: string,
-    password: string,
-    password2: string,
     license_period?: string,
     date_joined?: string,
     is_admin?: boolean,
