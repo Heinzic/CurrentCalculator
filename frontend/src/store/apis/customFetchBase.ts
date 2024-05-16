@@ -1,6 +1,6 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
-import { tokenService } from "../services/Tokens";
+import { tokenService } from "../services/TokenService";
 import axios from "axios";
 import { IToken } from "../models/IToken";
 
@@ -12,7 +12,7 @@ const baseQuery = fetchBaseQuery({baseUrl: baseUrl,prepareHeaders: (headers) => 
     const access = tokenService.getLocalAccessToken()
 
     if (access) {
-        headers.set("Bearer", `JWT ${access}`)
+        headers.set("Authorization", `Bearer ${access}`)
     }
 
     return headers
@@ -29,7 +29,7 @@ export const customFetchBase:BaseQueryFn<string | FetchArgs, unknown, FetchBaseQ
         if (!mutex.isLocked()) {
             const release = await mutex.acquire()
             try {
-                const response = await axios.post<IToken>(`${baseUrl}/auth/token/refresh`)
+                const response = await axios.post<IToken>(`${baseUrl}/auth/token/refresh/`, {'refresh':refreshToken})
                 
                 if (response.data) {
                     tokenService.updateLocalAccessToken(response.data.access)

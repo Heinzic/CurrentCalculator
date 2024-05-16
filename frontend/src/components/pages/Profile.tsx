@@ -32,7 +32,7 @@ function Profile() {
                                         Редактировать                              
                                     </NavLink>
                                 </div>
-                                <NavLink to={'/'} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[220px] text-center border-[1px] hover:border-gray-700">
+                                <NavLink to={'/login'} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[220px] text-center border-[1px] hover:border-gray-700">
                                     Выйти из аккаунта                                
                                 </NavLink>
                             </div>

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../models/IAuth";
-import { IToken } from "../models/IToken";
 import { AuthAPI } from "../apis/AuthAPI";
+import { UsersAPI } from "../apis/UserAPI";
 
 interface AuthState {
     user: IUser,
@@ -11,17 +11,17 @@ interface AuthState {
 
 const initialState: AuthState = {
     user: {
+        id:0,
         username:'',
-        date_joined: '',
         email: '',
         first_name: '',
-        id: 0 ,
-        is_active: false,
+        last_name: '',
+        license_period: '',
+        date_joined: '',
         is_admin: false,
         is_staff: false,
+        is_active: false,
         is_verified: false,
-        last_name: '',
-        license_period: ''
     },
     isAuth: false,
     isLoading: false
@@ -39,8 +39,14 @@ export const authSlice = createSlice({
             (state, {payload}) => {
                 localStorage.setItem('access', payload.tokens.access)
                 localStorage.setItem('refresh', payload.tokens.refresh)
-                // state.tokens.access = payload.tokens.access
-                // state.tokens.refresh = payload.tokens.refresh
+                state.isAuth= true
+            },
+        )
+        builder.addMatcher(
+            UsersAPI.endpoints.loadMyProfile.matchFulfilled,
+            (state, {payload}) => {
+                state.user = payload
+                state.isAuth = true
             }
         )
     },

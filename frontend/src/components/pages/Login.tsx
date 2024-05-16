@@ -12,13 +12,17 @@ interface ILoginForm {
 
 function Login() {
 
-    const [logIn, {}] = useLogInUserMutation()
+    const [logIn, ] = useLogInUserMutation()
     const navigate = useNavigate()
-    const {register, handleSubmit} = useForm<ILoginForm>({mode:'onBlur'})
+    const {register, handleSubmit, formState:{errors, }, reset} = useForm<ILoginForm>({mode:'onBlur'})
 
-    const submit: SubmitHandler<ILoginForm> = data => {
-        logIn(data)
-        navigate('/main')
+    const submit: SubmitHandler<ILoginForm> = async (data) => {
+        const response =  await logIn(data)
+        if(!response.error) {
+            navigate('/')
+        } else {
+            reset()
+        }
     }
 
     return (
@@ -47,6 +51,7 @@ function Login() {
                             </div>
                         </div>
                     </div>
+                    {errors.password && <p>{errors.password.message}</p>}
                 </form>
             </div>
             <Footer/>
