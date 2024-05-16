@@ -49,6 +49,13 @@ export const authSlice = createSlice({
                 state.isAuth = true
             }
         )
+        builder.addMatcher(
+            AuthAPI.endpoints.LogOutUser.matchFulfilled,
+            () => {
+                localStorage.removeItem('access')
+                localStorage.removeItem('refresh')
+            }
+        )
     },
 })
 

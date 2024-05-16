@@ -1,9 +1,22 @@
-import { NavLink } from "react-router-dom"
-import UnloggedHeader from "../base/UnloggedHeader"
+import { NavLink, useNavigate } from "react-router-dom"
 import Footer from "../base/Footer"
 import Header from "../base/Header"
+import { useLogOutUserMutation } from "../../store/apis/AuthAPI"
+import { tokenService } from "../../store/services/TokenService"
 
 function Profile() {
+
+    const [logOut, {}] = useLogOutUserMutation()
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        const refresh = tokenService.getLocalRefreshToken()
+        if (refresh) {
+            logOut(refresh)
+        }
+        navigate('/login')
+    }
+
     return (
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
@@ -32,9 +45,9 @@ function Profile() {
                                         Редактировать                              
                                     </NavLink>
                                 </div>
-                                <NavLink to={'/login'} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[220px] text-center border-[1px] hover:border-gray-700">
+                                <button onClick={handleLogOut} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[220px] text-center border-[1px] hover:border-gray-700">
                                     Выйти из аккаунта                                
-                                </NavLink>
+                                </button>
                             </div>
                         </div>
                         

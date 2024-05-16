@@ -21,7 +21,7 @@ export const AuthAPI = createApi({
             query: (refresh) => ({
                 url:`${url}/logout/`,
                 method:'POST',
-                body:refresh
+                body:{'refresh':refresh}
             })
         }),
         RegisterUser: build.mutation<IUser, IUserRegister>({
@@ -46,5 +46,6 @@ export const AuthAPI = createApi({
 export const {
     useLogInUserMutation,
     useRegisterUserMutation,
-    useRefreshTokenMutation
+    useRefreshTokenMutation,
+    useLogOutUserMutation
 } = AuthAPI
