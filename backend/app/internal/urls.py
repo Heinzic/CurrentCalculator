@@ -5,4 +5,5 @@ urlpatterns = [
     path("auth/", include("app.internal.urls-path.auth_urls")),
     path("objects/", include("app.internal.urls-path.object_urls")),
     path("calculations/", include("app.internal.urls-path.calculating_urls")),
+    path("consumer/", include("app.internal.urls-path.consumer_urls")),
 ]
