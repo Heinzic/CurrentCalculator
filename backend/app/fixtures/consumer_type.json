@@ -1,0 +1,640 @@
+[
+{
+    "model": "app.consumertype",
+    "pk": 1,
+    "fields": {
+        "name": "Квартира(с эл.плит) 10 квт",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "10.000",
+        "default_cos": "0.98"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 2,
+    "fields": {
+        "name": "Квартира(с эл.плит) 10 квт с кондиционерами",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "10.000",
+        "default_cos": "0.93"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 3,
+    "fields": {
+        "name": "Квартира(с эл.плит) более 10 квт",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "11.000",
+        "default_cos": "0.98"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 4,
+    "fields": {
+        "name": "Квартира(с эл.плит) более 10 квт с кондиционерами",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "11.000",
+        "default_cos": "0.93"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 5,
+    "fields": {
+        "name": "Квартира(с эл.плит) менее 10 квт",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "9.000",
+        "default_cos": "0.98"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 6,
+    "fields": {
+        "name": "Квартира(с эл.плит) менее 10 квт с кондиционерами",
+        "special": "Flat",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "9.000",
+        "default_cos": "0.93"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 7,
+    "fields": {
+        "name": "Щит СС",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "3.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 8,
+    "fields": {
+        "name": "Щит СПЗ СС",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "3.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 9,
+    "fields": {
+        "name": "Розеточная сеть",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "3.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 10,
+    "fields": {
+        "name": "Встроенные помещения (БКТ), при площади меньше 100 м2",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "15.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 11,
+    "fields": {
+        "name": "Встроенные помещения (БКТ), при площади больше 100 м2",
+        "special": "Other",
+        "unit_measurement": "кВт/м2",
+        "default_power_per_unit": "0.200",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 12,
+    "fields": {
+        "name": "Общеобменная вентиляция, небольших объектов",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "5.000",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 13,
+    "fields": {
+        "name": "Общеобменная вентиляция, не высотных зданий (до 75 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "10.000",
+        "default_cos": "0.80"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 14,
+    "fields": {
+        "name": "Общеобменная вентиляция, высотных зданий (до 100 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "25.000",
+        "default_cos": "0.80"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 15,
+    "fields": {
+        "name": "Общеобменная вентиляция, уникальных зданий (до 200 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "35.000",
+        "default_cos": "0.80"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 16,
+    "fields": {
+        "name": "Лифт",
+        "special": "Elevator",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "20.000",
+        "default_cos": "0.65"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 17,
+    "fields": {
+        "name": "Лифт ПП",
+        "special": "Elevator",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "20.000",
+        "default_cos": "0.65"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 18,
+    "fields": {
+        "name": "Электрические тепловые завесы (на ТЭНах)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "10.000",
+        "default_cos": "0.98"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 19,
+    "fields": {
+        "name": "Водяные тепловые завесы",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "1.000",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 20,
+    "fields": {
+        "name": "Освещение",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "15.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 21,
+    "fields": {
+        "name": "Щит освещения",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "3.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 22,
+    "fields": {
+        "name": "Щит наружного освещения",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "15.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 23,
+    "fields": {
+        "name": "Щит фасадного освещения",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "3.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 24,
+    "fields": {
+        "name": "Отопление электрощитовых",
+        "special": "Other",
+        "unit_measurement": "кВт/корпус",
+        "default_power_per_unit": "4.000",
+        "default_cos": "0.98"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 25,
+    "fields": {
+        "name": "Насосная станция, не высоттных зданий (до 75 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "15.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 26,
+    "fields": {
+        "name": "Насосная станция, не высоттных зданий (до 100 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "20.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 27,
+    "fields": {
+        "name": "Насосная станция, не высоттных зданий (до 200 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "40.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 28,
+    "fields": {
+        "name": "ИТП, не высоттных зданий (до 75 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "10.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 29,
+    "fields": {
+        "name": "ИТП, не высоттных зданий (до 100 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "20.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 30,
+    "fields": {
+        "name": "ИТП, не высоттных зданий (до 200 м)",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "30.000",
+        "default_cos": "0.75"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 31,
+    "fields": {
+        "name": "Ворота в паркинг",
+        "special": "Other",
+        "unit_measurement": "кВт/шт",
+        "default_power_per_unit": "5.000",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 32,
+    "fields": {
+        "name": "Предприятия общественного питания | Полностью электрифицированные с числом посадочных мест:  до 400",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "1.040",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 33,
+    "fields": {
+        "name": "Предприятия общественного питания | Полностью электрифицированные с числом посадочных мест:  до 1000",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.860",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 34,
+    "fields": {
+        "name": "Предприятия общественного питания | Полностью электрифицированные с числом посадочных мест:  больше 1000",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.750",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 35,
+    "fields": {
+        "name": "Предприятия общественного питания | Частично электрифицированные (с плитами на газообразном топливе) с числом посадочных мест: до 400",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.810",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 36,
+    "fields": {
+        "name": "Предприятия общественного питания | Частично электрифицированные (с плитами на газообразном топливе) с числом посадочных мест: до 1000",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.690",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 37,
+    "fields": {
+        "name": "Предприятия общественного питания | Частично электрифицированные (с плитами на газообразном топливе) с числом посадочных мест: больше 1000",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.560",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 38,
+    "fields": {
+        "name": "Продовольственные магазины без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 торгового зала",
+        "default_power_per_unit": "0.230",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 39,
+    "fields": {
+        "name": "Продовольственные магазины с кондиционированием воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 торгового зала",
+        "default_power_per_unit": "0.250",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 40,
+    "fields": {
+        "name": "Промтоварные магазины без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 торгового зала",
+        "default_power_per_unit": "0.140",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 41,
+    "fields": {
+        "name": "Промтоварные магазины с кондиционированием воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 торгового зала",
+        "default_power_per_unit": "0.160",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 42,
+    "fields": {
+        "name": "Общеобразовательные школы | С электрифицированными столовыми и спортзалами",
+        "special": "СП-256",
+        "unit_measurement": "кВт/1 учащегося",
+        "default_power_per_unit": "0.250",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 43,
+    "fields": {
+        "name": "Общеобразовательные школы | Без электрифицированных столовых, со спортзалами",
+        "special": "СП-256",
+        "unit_measurement": "кВт/1 учащегося",
+        "default_power_per_unit": "0.170",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 44,
+    "fields": {
+        "name": "Общеобразовательные школы | С буфетами, без спортзалов",
+        "special": "СП-256",
+        "unit_measurement": "кВт/1 учащегося",
+        "default_power_per_unit": "0.170",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 45,
+    "fields": {
+        "name": "Общеобразовательные школы | Без буфетов и спортзалов",
+        "special": "СП-256",
+        "unit_measurement": "кВт/1 учащегося",
+        "default_power_per_unit": "0.150",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 46,
+    "fields": {
+        "name": "Общеобразовательные школы | Профессионально-технические училища со столовыми",
+        "special": "СП-256",
+        "unit_measurement": "кВт/1 учащегося",
+        "default_power_per_unit": "0.460",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 47,
+    "fields": {
+        "name": "Детские ясли-сады",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.460",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 48,
+    "fields": {
+        "name": "Кинотеатры и киноконцертные залы | С кондиционированием воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.140",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 49,
+    "fields": {
+        "name": "Кинотеатры и киноконцертные залы | Без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.120",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 50,
+    "fields": {
+        "name": "Кинотеатры и киноконцертные залы | Клубы",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.460",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 51,
+    "fields": {
+        "name": "Кинотеатры и киноконцертные залы | Парикмахерские",
+        "special": "СП-256",
+        "unit_measurement": "кВт/рабочее место",
+        "default_power_per_unit": "1.500",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 52,
+    "fields": {
+        "name": "Здания или помещения учреждений управления, проектных и конструкторских организаций | С кондиционированием воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 общей площади",
+        "default_power_per_unit": "0.054",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 53,
+    "fields": {
+        "name": "Здания или помещения учреждений управления, проектных и конструкторских организаций | Без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 общей площади",
+        "default_power_per_unit": "0.043",
+        "default_cos": "0.95"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 54,
+    "fields": {
+        "name": "Гостиницы | С кондиционированием воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.460",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 55,
+    "fields": {
+        "name": "Гостиницы | Без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.340",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 56,
+    "fields": {
+        "name": "Гостиницы | Дома отдыха и пансионаты без кондиционирования воздуха",
+        "special": "СП-256",
+        "unit_measurement": "кВт/место",
+        "default_power_per_unit": "0.360",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 57,
+    "fields": {
+        "name": "Гостиницы | Фабрики химчистки и прачечные самообслуживания",
+        "special": "СП-256",
+        "unit_measurement": "кВт/кг вещей",
+        "default_power_per_unit": "0.075",
+        "default_cos": "0.85"
+    }
+},
+{
+    "model": "app.consumertype",
+    "pk": 58,
+    "fields": {
+        "name": "Гостиницы | Детские лагеря",
+        "special": "СП-256",
+        "unit_measurement": "кВт/м2 жилых помещений",
+        "default_power_per_unit": "0.023",
+        "default_cos": "0.85"
+    }
+}
+]

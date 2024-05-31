@@ -11,7 +11,7 @@ class ObjectSerializer(serializers.ModelSerializer):
             "name": {"required": True},
             "region_coefficient": {
                 "required": True,
-                "error_messages": {"invalid_choice": f"Valid values: {list(model.REGION_COEFFICIENT_CHOICES.keys())}"},
+                "error_messages": {"invalid_choice": f"Valid values: {list(model.Region.values)}"},
             },
         }
 
