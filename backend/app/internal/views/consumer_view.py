@@ -1,10 +1,9 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from app.internal.models.consumer_model import Consumer
-from app.internal.serializers.consumer_serializer import ConsumerSerializer
+from app.internal.models.consumer_model import Consumer, ConsumerType
+from app.internal.serializers.consumer_serializer import ConsumerSerializer, ConsumerTypeSerializer
 from app.internal.utils.permissions import ValidLicensePermission
 
 
@@ -28,8 +27,11 @@ class ConsumerCreateAPIView(CreateAPIView):
     serializer_class = ConsumerSerializer
 
 
-class ConsumerTypeAPIView(APIView):
+class ConsumerTypeAPIView(GenericAPIView):
     permission_classes = [IsAuthenticated, ValidLicensePermission]
+    serializer_class = ConsumerTypeSerializer
+    queryset = ConsumerType.objects.all()
 
     def get(self, request):
-        return Response(Consumer.CHARACTERISTIC)
+        consumers = self.serializer_class(self.get_queryset(), many=True)
+        return Response(consumers.data)
