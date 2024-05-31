@@ -4,6 +4,8 @@ import Footer from "../base/Footer"
 
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useLogInUserMutation } from "../../store/apis/AuthAPI"
+import { tokenService } from "../../store/services/TokenService"
+import { useLoadMyProfileQuery } from "../../store/apis/UserAPI"
 
 interface ILoginForm {
     username:'',
@@ -18,7 +20,10 @@ function Login() {
 
     const submit: SubmitHandler<ILoginForm> = async (data) => {
         const response =  await logIn(data)
+        const access = response.data?.tokens.access
         if(!response.error) {
+            if (access)
+            // useLoadMyProfileQuery(access)
             navigate('/')
         } else {
             reset()

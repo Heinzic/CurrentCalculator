@@ -1,18 +1,17 @@
-import { useEffect } from "react";
+import { redirect } from "react-router-dom";
 import { useLoadMyProfileQuery } from "../../store/apis/UserAPI";
 import { tokenService } from "../../store/services/TokenService";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
 import Search from "../base/Search";
 import ObjectCard from "../elements/ObjectCard";
-import { redirect } from "react-router-dom";
 
 function Main() {
 
     const access = tokenService.getLocalAccessToken()
     let profile;
     if (access) {
-            profile = useLoadMyProfileQuery(access)
+        profile = useLoadMyProfileQuery(access)
     } else {
         redirect('/login')
     }
@@ -27,7 +26,6 @@ function Main() {
                         <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md">
                             Фильтр
                         </button>
-                        {profile?.data?.first_name}
                         <Search/>
                     </div>
                 </div>

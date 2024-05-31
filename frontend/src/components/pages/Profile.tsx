@@ -3,18 +3,22 @@ import Footer from "../base/Footer"
 import Header from "../base/Header"
 import { useLogOutUserMutation } from "../../store/apis/AuthAPI"
 import { tokenService } from "../../store/services/TokenService"
+import { RootState } from "../../store/store"
+import { IUser } from "../../store/models/IAuth"
+import { connect } from "react-redux"
 
-function Profile() {
+interface ProfileProps{
+    user: IUser
+}
+
+function Profile({user}:ProfileProps) {
 
     const [logOut, {}] = useLogOutUserMutation()
-    const navigate = useNavigate()
-
     const handleLogOut = () => {
         const refresh = tokenService.getLocalRefreshToken()
         if (refresh) {
             logOut(refresh)
         }
-        navigate('/login')
     }
 
     return (
@@ -28,13 +32,13 @@ function Profile() {
                     <div className="p-[15px]">
                         <div className="flex flex-col px-[38px] gap-[30px] pt-[41px] bg-[#FFFFFF] rounded-md">
                             <div className="text-[24px] font-bold">
-                                Иван Иванов
+                                {user.first_name} {user.last_name}
                             </div>
                             <div className="">
-                                Почта: aaaaa@aaa
+                                Почта: {user.email}
                             </div>
                             <div className="">
-                                Лицензия: 1241511 от 10.01.2024
+                                Лицензия: до {user.license_period}
                             </div>
                             <div className="flex pb-[40px] mt-[41px] items-center gap-[90px]">
                                 <div className="flex gap-[20px]">
@@ -59,4 +63,10 @@ function Profile() {
     )
 }
 
-export default Profile
+function mapStateToProps (state: RootState) {
+    return {
+        user: state.authReducer.user
+    }
+}
+
+export default connect(mapStateToProps)(Profile)

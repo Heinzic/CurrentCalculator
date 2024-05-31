@@ -2,12 +2,14 @@ import { authReducer } from './reducers/Auth';
 import { AuthAPI } from './apis/AuthAPI';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { UsersAPI } from './apis/UserAPI';
+import { ObjectsAPI } from './apis/ObjectsAPI';
 
 
 const rootReducer = combineReducers({
     [AuthAPI.reducerPath]: AuthAPI.reducer,
     authReducer,
-    [UsersAPI.reducerPath]: UsersAPI.reducer
+    [UsersAPI.reducerPath]: UsersAPI.reducer,
+    [ObjectsAPI.reducerPath]: ObjectsAPI.reducer
 })
 
 export const setupStore = () => {
@@ -16,7 +18,8 @@ export const setupStore = () => {
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(
                 AuthAPI.middleware, 
-                UsersAPI.middleware
+                UsersAPI.middleware,
+                ObjectsAPI.middleware
                 ),
             
     })

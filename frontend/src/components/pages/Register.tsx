@@ -15,8 +15,8 @@ function Register() {
 
     const submit: SubmitHandler<IRegisterForm> = data => {
         registerUser(data)
-        // reset()
-        // navigate('/')
+        reset()
+        navigate('/')
     }
 
     return (
