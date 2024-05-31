@@ -12,7 +12,7 @@ class ConsumerListAPIView(ListAPIView):
     serializer_class = ConsumerSerializer
 
     def get_queryset(self):
-        return Consumer.objects.filter(section__id=self.kwargs["section__id"])
+        return Consumer.objects.filter(section__id=self.kwargs["section_id"])
 
 
 class ConsumerDetailAPIView(RetrieveUpdateDestroyAPIView):

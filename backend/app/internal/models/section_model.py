@@ -7,7 +7,7 @@ class Section(models.Model):
     calculating = models.ForeignKey("Calculating", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} | id: {self.id}"
 
     # def distribute_consumers(self):
     #     consumers = Consumers.objects.filter(section__id == self.id)
