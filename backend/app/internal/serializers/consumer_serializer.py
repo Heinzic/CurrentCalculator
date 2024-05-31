@@ -1,7 +1,6 @@
+from app.internal.models.consumer_model import Consumer, ConsumerType
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
-from app.internal.models.consumer_model import Consumer, ConsumerType
 
 
 class ConsumerTypeSerializer(serializers.ModelSerializer):
@@ -22,25 +21,26 @@ class ConsumerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Consumer
-        fields = ["id",
-                  "section",
-                  "input",
-                  "name",
-                  "type",
-                  "type_name",
-                  "volume",
-                  "power_per_unit",
-                  "total_capacity",
-                  "coefficient_regional",
-                  "coefficient_demand",
-                  "coefficient_maximum_mismatch",
-                  "cos",
-                  "tg",
-                  "pp",
-                  "qp",
-                  "sp",
-                  "result_current",
-                  ]
+        fields = [
+            "id",
+            "section",
+            "input",
+            "name",
+            "type",
+            "type_name",
+            "volume",
+            "power_per_unit",
+            "total_capacity",
+            "coefficient_regional",
+            "coefficient_demand",
+            "coefficient_maximum_mismatch",
+            "cos",
+            "tg",
+            "pp",
+            "qp",
+            "sp",
+            "result_current",
+        ]
 
         read_only_fields = ["coefficient_regional", "cos"]
         extra_kwargs = {"type": {"required": True}}

@@ -11,4 +11,3 @@ class Section(models.Model):
 
     # def distribute_consumers(self):
     #     consumers = Consumers.objects.filter(section__id == self.id)
-

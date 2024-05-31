@@ -1,9 +1,8 @@
 import math
 from decimal import Decimal
 
-from django.db import models
-
 from app.internal.models.consumer_model import Consumer
+from django.db import models
 
 
 class InputPower(models.Model):
@@ -46,7 +45,7 @@ class InputPower(models.Model):
 
     @property
     def sp(self):
-        return Decimal(str(self.pp ** 2 + self.qp ** 2)).sqrt()
+        return Decimal(str(self.pp**2 + self.qp**2)).sqrt()
 
     @property
     def result_current(self):
