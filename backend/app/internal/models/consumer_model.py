@@ -3,6 +3,8 @@ from decimal import Decimal
 
 from django.db import models
 
+from app.internal.models.object_model import Object
+
 
 class ConsumerType(models.Model):
     FLAT = "Flat"
@@ -130,7 +132,18 @@ class Consumer(models.Model):
     coefficient_demand = models.DecimalField(default=1, decimal_places=6, max_digits=7, verbose_name="коэф. спроса")
     cos = models.DecimalField(default=0.95, decimal_places=2, max_digits=3)
 
+    def __str__(self):
+        return f"{self.name}"
+
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if self.type.special == ConsumerType.FLAT:
+            region = self.section.calculating.object.region_coefficient
+            self.coefficient_regional = Decimal("0.81") if region is Object.Region.CENTRAL else Decimal("0.91")
+        else:
+            self.coefficient_regional = 1
+
+        super().save(force_insert, force_update, using, update_fields)
+
         # todo возможен баг
         # если у максимального потребителя изменить параметры и другой потребитель будет его превосходить, то
         # максимальный потребитель у входа не изменится
@@ -138,11 +151,9 @@ class Consumer(models.Model):
             self.input.max_consumer = self
             self.input.save()
 
-        super().save(force_insert, force_update, using, update_fields)
-
     @property
     def total_capacity(self):
-        if self.type in self.Type["Flat"]:
+        if self.type.special == ConsumerType.FLAT:
             return None
         return Decimal(self.volume * self.power_per_unit)
 
@@ -161,7 +172,7 @@ class Consumer(models.Model):
     def pp(self):
         coefficient_multiple = Decimal(
             self.coefficient_regional * self.coefficient_demand * self.coefficient_maximum_mismatch)
-        if self.type.special is ConsumerType.FLAT:
+        if self.type.special == ConsumerType.FLAT:
             return Decimal(self.volume * coefficient_multiple)
         else:
             return Decimal(self.total_capacity * coefficient_multiple)
