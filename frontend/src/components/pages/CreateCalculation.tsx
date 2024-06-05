@@ -2,10 +2,12 @@ import { useState } from "react";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
 import CalculationTable from "../elements/CalculationTable";
+import DatePicker from "react-datepicker";
 
 function CreateCalculation() {
 
     const [objectOpen, setObjectOpen] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
     const objectOptions = [
         'Обьект 1',
         'Object 2',
@@ -52,15 +54,14 @@ function CreateCalculation() {
                         </ul>
                     </div>
                     <div className="">
-                        <button className="flex items-center text-[20px] gap-[8px] ml-auto bg-[#EBEBEB] rounded-md px-[7px] w-[510px] justify-between"
-                        onClick={(e) => handleClick(e, objectOpen, setObjectOpen)}>
+                        {/* <button className="flex items-center text-[20px] gap-[8px] ml-auto bg-[#EBEBEB] rounded-md px-[7px] w-[510px] justify-between">
                             <div className="py-[8px] px-[22px] text-left text-[#454F55]">Дата</div>
                             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="26" height="26" rx="7" transform="matrix(-1 0 0 1 26 0)" fill="#9AA8B0"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M21.4599 8.55275C21.9053 8.99809 21.9053 9.72012 21.4599 10.1655L13.719 17.9064C13.4947 18.1307 13.2002 18.242 12.9062 18.2404C12.6122 18.242 12.3177 18.1307 12.0934 17.9064L4.35243 10.1655C3.90709 9.72012 3.90709 8.99809 4.35243 8.55275C4.79776 8.10742 5.51979 8.10742 5.96513 8.55275L12.9062 15.4938L19.8472 8.55275C20.2926 8.10742 21.0146 8.10742 21.4599 8.55275Z" fill="white"/>
                             </svg>
-                        </button>
-                        <ul className={objectOpen? "z-10 absolute min-w-[500px] mt-[8px] mx-auto" : 'z-10 absolute min-w-[267px] mt-[8px] mx-auto invisible'}>
+                        </button> */}
+                        {/* <ul className={objectOpen? "z-10 absolute min-w-[500px] mt-[8px] mx-auto" : 'z-10 absolute min-w-[267px] mt-[8px] mx-auto invisible'}>
                             <div className="relative p-[20px] bg-white">
                                 {objectOptions.map(e => (
                                 <li className="flex text-[16px]" key={e}>
@@ -69,7 +70,8 @@ function CreateCalculation() {
                                 </li> 
                                 ))}
                             </div>
-                        </ul>
+                        </ul> */}
+                        {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                     </div>
                 </div>
                 <div className="flex flex-row gap-[17px]">

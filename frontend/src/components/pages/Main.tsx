@@ -1,6 +1,4 @@
-import { redirect } from "react-router-dom";
 import { useLoadMyProfileQuery } from "../../store/apis/UserAPI";
-import { tokenService } from "../../store/services/TokenService";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
 import Search from "../base/Search";
@@ -8,13 +6,7 @@ import ObjectCard from "../elements/ObjectCard";
 
 function Main() {
 
-    const access = tokenService.getLocalAccessToken()
-    let profile;
-    if (access) {
-        profile = useLoadMyProfileQuery(access)
-    } else {
-        redirect('/login')
-    }
+    useLoadMyProfileQuery()
     
     return (
         <div className="min-h-[100vh] h-[100vh] flex flex-col">

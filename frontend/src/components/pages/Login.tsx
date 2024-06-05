@@ -1,32 +1,41 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, redirect, useNavigate } from "react-router-dom"
 import UnloggedHeader from "../base/UnloggedHeader"
 import Footer from "../base/Footer"
-
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useLogInUserMutation } from "../../store/apis/AuthAPI"
-import { tokenService } from "../../store/services/TokenService"
-import { useLoadMyProfileQuery } from "../../store/apis/UserAPI"
+import { RootState } from "../../store/store"
+import { connect } from "react-redux"
+import { useEffect } from "react"
 
 interface ILoginForm {
     username:'',
     password:''
 }
 
-function Login() {
+interface LoginProps {
+    isAuth: boolean
+}
 
+function Login({isAuth}: LoginProps) {
+
+    // useEffect(() =>{
+    //     if (isAuth) navigate('/')
+    //     console.log(isAuth)
+    // }, [])
     const [logIn, ] = useLogInUserMutation()
     const navigate = useNavigate()
-    const {register, handleSubmit, formState:{errors, }, reset} = useForm<ILoginForm>({mode:'onBlur'})
+    const {register, handleSubmit, formState:{errors, }, resetField, setError} = useForm<ILoginForm>({mode:'onBlur'})
 
     const submit: SubmitHandler<ILoginForm> = async (data) => {
         const response =  await logIn(data)
-        const access = response.data?.tokens.access
         if(!response.error) {
-            if (access)
-            // useLoadMyProfileQuery(access)
             navigate('/')
         } else {
-            reset()
+            resetField("password")
+            setError('password', {
+                type: 'server',
+                message:'Неверный логин или пароль'
+            })
         }
     }
 
@@ -45,6 +54,7 @@ function Login() {
                         <div className="flex flex-col px-[38px] gap-[10px] pt-[41px] bg-[#FFFFFF] rounded-md">
                             <input {...register('username', {required:true})} type="text" placeholder="Логин или почта" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
                             <input {...register('password', {required:true})} type="password" placeholder="Пароль" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl mt-[19px]"/>
+                            <div className="text-red-600">{errors.password && errors.password.message}</div>
                             <NavLink to={'/'} className="ml-auto text-[#454F55] hover:text-black">Забыли пароль?</NavLink>
                             <div className="flex justify-between pb-[40px] mt-[41px] items-center">
                                 <span className="text-[#454F55]">
@@ -56,7 +66,6 @@ function Login() {
                             </div>
                         </div>
                     </div>
-                    {errors.password && <p>{errors.password.message}</p>}
                 </form>
             </div>
             <Footer/>
@@ -64,4 +73,10 @@ function Login() {
     )
 }
 
-export default Login
+function mapStateToProps(state: RootState){
+    return {
+        isAuth: state.authReducer.isAuth,
+    }
+}
+
+export default connect(mapStateToProps)(Login)

@@ -34,7 +34,10 @@ function CreateObject({active, setActive}: CreateObjectProps) {
                             <input {...register('name', {required:true})} type="text" placeholder="Наименование объекта*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
                             <input {...register('address')} type="text" placeholder="Адрес" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl mt-[19px]"/>
                             <input {...register('area')} type="number" placeholder="Общая площадь объекта" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl mt-[19px]"/>
-                            <input {...register('region_coefficient')} type="text" placeholder="Центральный округ         Поправочный коэффициент 1.0*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl mt-[19px]"/>
+                            <select {...register('region_coefficient', {required:true})} className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl mt-[19px]">
+                                <option value="CNT">Центральный округ Поправочный коэффициент 1.0</option>
+                                <option value="OTH">Не центральный округ Поправочный коэффициент 0.91</option>
+                            </select>
                             <div className="flex justify-end gap-[22px] pb-[40px] mt-[41px] items-center text-black">
                                 <button onClick={(e) => {
                                     e.preventDefault()

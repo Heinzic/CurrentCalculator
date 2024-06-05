@@ -1,17 +1,19 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { tokenService } from "../services/TokenService"
 import { useLoadMyProfileQuery } from "../apis/UserAPI";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-const LoginGuard: FC = () => {
-    const access = tokenService.getLocalAccessToken()
+export const LoginGuard:FC = () => {
+    let profile = useLoadMyProfileQuery()
     const navigate = useNavigate()
-    if (access) {
-        const profile = useLoadMyProfileQuery(access)
-        if (profile) navigate('/')
-    }
-
+    useEffect(() => {
+        if(!profile.isSuccess && !profile.isLoading)
+        {
+            console.log(profile);
+            
+            navigate('/login')
+            
+        }
+            
+    }, [profile.isLoading])
     return <Outlet/>
 }
-
-export default LoginGuard
