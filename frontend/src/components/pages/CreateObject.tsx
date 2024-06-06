@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { tokenService } from "../../store/services/TokenService";
 import { useCreateObjectMutation } from "../../store/apis/ObjectsAPI";
 
 interface CreateObjectProps {
@@ -25,7 +24,7 @@ function CreateObject({active, setActive}: CreateObjectProps) {
     }
     
     return (
-        <div className={active? 'visible fixed' : 'hidden'}>
+        <div className={active? 'visible fixed z-10' : 'hidden'}>
             <div className="h-[100vh] w-[100vw] fixed bg-[#000000] bg-opacity-40 top-0 left-0 flex items-center justify-center z-10" onClick={() => setActive(false)}>
                <form action="" onClick={(e) => e.stopPropagation()} className="w-[858px] bg-[#D0DADF]" onSubmit={handleSubmit(submit)}>
                     <div className="p-[15px]">

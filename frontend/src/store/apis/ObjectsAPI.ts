@@ -18,9 +18,15 @@ export const ObjectsAPI = createApi({
                 body: object
            }) 
         }),
+        getObjectsList: build.query<IObject[], void>({
+            query: () => ({
+                url:`${url}/list/`
+            })
+        })
     })
 })
 
 export const {
-    useCreateObjectMutation
+    useCreateObjectMutation,
+    useGetObjectsListQuery
 } = ObjectsAPI
