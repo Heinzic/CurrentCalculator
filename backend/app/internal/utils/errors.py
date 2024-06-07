@@ -1,0 +1,2 @@
+class DistributeError(Exception):
+    pass

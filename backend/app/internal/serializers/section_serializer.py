@@ -1,8 +1,7 @@
-from rest_framework import serializers
-
 from app.internal.models.input_power_model import InputPower
 from app.internal.models.section_model import Section
-from app.internal.serializers.input_power_serializer import InputPowerSerializer, InputPowerDetailSerializer
+from app.internal.serializers.input_power_serializer import InputPowerDetailSerializer, InputPowerSerializer
+from rest_framework import serializers
 
 
 class SectionSerializer(serializers.ModelSerializer):

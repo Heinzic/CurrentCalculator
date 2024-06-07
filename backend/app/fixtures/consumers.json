@@ -1,0 +1,167 @@
+[
+{
+    "model": "app.consumer",
+    "pk": 4,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Квартиры (с эл.плит.).",
+        "type": 1,
+        "volume": "76.00",
+        "power_per_unit": "10.000",
+        "coefficient_regional": "0.91",
+        "coefficient_demand": "1.000000",
+        "cos": "0.98"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 2,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Щит СС",
+        "type": 7,
+        "volume": "1.00",
+        "power_per_unit": "3.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.95"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 3,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Розеточные сети",
+        "type": 9,
+        "volume": "1.00",
+        "power_per_unit": "3.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.95"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 1,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Встроенные помещения (БКТ)",
+        "type": 11,
+        "volume": "304.00",
+        "power_per_unit": "0.200",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.95"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 5,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Щит СПЗ СС",
+        "type": 8,
+        "volume": "1.00",
+        "power_per_unit": "3.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.95"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 6,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Общеобменная вентиляция",
+        "type": 12,
+        "volume": "1.00",
+        "power_per_unit": "5.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.85"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 7,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Лифты",
+        "type": 16,
+        "volume": "2.00",
+        "power_per_unit": "20.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.65"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 8,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Тепловые завесы на входах",
+        "type": 18,
+        "volume": "2.00",
+        "power_per_unit": "10.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.98"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 9,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Щит наружного освещения",
+        "type": 22,
+        "volume": "1.00",
+        "power_per_unit": "15.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.95"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 10,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Отопление электрощитовых",
+        "type": 24,
+        "volume": "1.00",
+        "power_per_unit": "4.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.98"
+    }
+},
+{
+    "model": "app.consumer",
+    "pk": 11,
+    "fields": {
+        "section": 1,
+        "input": null,
+        "name": "Лифты пп",
+        "type": 17,
+        "volume": "2.00",
+        "power_per_unit": "20.000",
+        "coefficient_regional": "1.00",
+        "coefficient_demand": "1.000000",
+        "cos": "0.65"
+    }
+}
+]
