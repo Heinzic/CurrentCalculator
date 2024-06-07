@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import { RootState } from "../../store/store"
 import { connect } from "react-redux"
 import { SetStateAction, useState } from "react"
-import CreateObject from "../pages/CreateObject"
+import CreateObjectModal from "../elements/CreateObjectModal"
 
 interface HeaderProps {
     first_name: string
@@ -46,7 +46,7 @@ function Header({first_name, last_name}: HeaderProps) {
                             <path d="M36.1846 35.6661C22.9385 35.6661 28.0844 35.6661 18.0923 35.6661C8.1002 35.6661 10.3385 35.6661 0 35.6661C0 27.1812 8.1002 20.3027 18.0923 20.3027C28.0844 20.3027 36.1846 27.1812 36.1846 35.6661Z" fill="#FBFAFA"/>
                         </svg>
                     </NavLink>
-                    <CreateObject active={modalActive} setActive={setModalActive} />
+                    <CreateObjectModal active={modalActive} setActive={setModalActive} />
                 </div>
             </header>
         </>

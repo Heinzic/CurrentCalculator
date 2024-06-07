@@ -1,3 +1,4 @@
+import { useGetCalculationsListQuery } from "../../store/apis/CalculationsAPI";
 import { useLoadMyProfileQuery } from "../../store/apis/UserAPI";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
@@ -7,6 +8,7 @@ import ObjectCard from "../elements/ObjectCard";
 function Main() {
 
     useLoadMyProfileQuery()
+    const calc = useGetCalculationsListQuery().data
     
     return (
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
@@ -22,9 +24,16 @@ function Main() {
                     </div>
                 </div>
                 <div className="flex flex-row flex-wrap justify-between">
-                    <ObjectCard/>
-                    <ObjectCard/>
-                    <ObjectCard/>
+                    {calc && calc.slice(0).reverse().map(e => (
+                        <ObjectCard
+                            date={e.date} 
+                            user={e.user} 
+                            object={e.object}
+                            annotation={e.annotation}
+                            costumer={e.costumer}
+                            id={e.id}
+                            />                        
+                    ))}
 
                 </div>
             </div>

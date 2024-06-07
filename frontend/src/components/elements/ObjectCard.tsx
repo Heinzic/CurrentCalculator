@@ -1,4 +1,8 @@
-function ObjectCard() {
+import { ICalculating } from "../../store/models/ICalculations"
+
+interface ObjectCardProps extends ICalculating {}
+
+function ObjectCard({id, date, object, user, annotation, costumer}: ObjectCardProps) {
     return (
         <>
             <div className="max-w-[640px] w-[640px] bg-[#D0DADF] mt-[20px] rounded-md border-[2px] hover:border-[#454F55]">
@@ -29,25 +33,25 @@ function ObjectCard() {
                         </ul>
                         <ul className="bg-[#FFFFFF] rounded-md px-1">
                             <li className="">
-                                <span>ЖК Легион</span>
+                                <span>{object}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>{costumer}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>{date}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>{annotation}</span>
                             </li>
                         </ul>
                     </div>

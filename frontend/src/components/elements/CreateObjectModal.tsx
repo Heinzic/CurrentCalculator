@@ -13,7 +13,7 @@ interface IObjectForm {
     area:0
 }
 
-function CreateObject({active, setActive}: CreateObjectProps) {
+function CreateObjectModal({active, setActive}: CreateObjectProps) {
     
     const {register, handleSubmit} = useForm<IObjectForm>({mode:'onBlur'})
     const [createObject] = useCreateObjectMutation()
@@ -57,4 +57,4 @@ function CreateObject({active, setActive}: CreateObjectProps) {
     )
 }
 
-export default CreateObject;
+export default CreateObjectModal;

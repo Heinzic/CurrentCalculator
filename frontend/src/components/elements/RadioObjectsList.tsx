@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IObject } from "../../store/models/IObject";
 
 interface RadioListProps {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
 import CalculationTable from "../elements/CalculationTable";
@@ -6,27 +6,57 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGetObjectsListQuery } from "../../store/apis/ObjectsAPI";
 import RadioObjectsList from "../elements/RadioObjectsList";
+import { useForm, Controller } from "react-hook-form";
+import { ICalculatingCreate } from "../../store/models/ICalculations";
+import { useCreateCalculationMutation } from "../../store/apis/CalculationsAPI";
+import { useCreateSectionMutation } from "../../store/apis/SectionAPI";
+import { ISectionCreate } from "../../store/models/ISections";
+import AddSectionModal from "../elements/AddSectionModal";
+
+interface ICalculationsForm {
+    // date: Date
+    costumer: string
+    annotation: string
+}
 
 function CreateCalculation() {
 
     const objects = useGetObjectsListQuery()
+    const [createCalculation] = useCreateCalculationMutation()
+    const [createSection] = useCreateSectionMutation()
 
     const [objectOpen, setObjectOpen] = useState(false)
-    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [startDate, setStartDate] = useState<Date | null>(null)
     const [objectSelected, setObjectSelected] = useState('')
+    const [sectionModalActive, setSectionModalActive] = useState(false)
+    const {register, handleSubmit, control, watch} = useForm<ICalculationsForm>({mode:"onBlur"})
+    const watchAll = watch()
 
     function handleClick(e: React.MouseEvent<HTMLButtonElement>, option: boolean, setOption: React.Dispatch<React.SetStateAction<boolean>>) {
         e.preventDefault()
         setOption(!option)
     }
 
+    async function createCalculations(data: ICalculatingCreate) {
+        return await createCalculation(data)
+    }
+
+    async function addSection(session: ISectionCreate, calc: ICalculatingCreate) {
+        const calculation = (await createCalculation(calc)).data
+        await createSection(session)
+    }
+
+    async function handleAddSection(info: ICalculatingCreate) {
+        const calc = (await createCalculations(info)).data
+    }
+
     return ( 
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
-            <div className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow h-[1000px] flex flex-col gap-[14px]">
+            <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow h-[1000px] flex flex-col gap-[14px]">
                 <h1 className="my-0 ">Создание расчета мощности</h1>
                 <div className="flex gap-[24px] ">
-                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md">
+                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md" onClick={(e) => handleClick(e, sectionModalActive, setSectionModalActive)}>
                         Сохранить
                     </button>
                     <button className="bg-[#D0D4D9] px-[40px] rounded-md">
@@ -67,21 +97,30 @@ function CreateCalculation() {
                 </div>
                 <div className="flex flex-row gap-[17px]">
                     <div className="">
-                        <input type="text" placeholder="Заказчик" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('costumer')} type="text" placeholder="Заказчик" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                     <div className="">
-                        <input type="text" placeholder="Примечание" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('annotation')} type="text" placeholder="Примечание" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
                     <div className="flex gap-[19px]">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md">
+                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200" disabled>
                             Добавить потребителя
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md">
+                        <button className="bg-[#D0D4D9] px-[40px] rounded-md" type="button"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            // handleAddSection(
+                            //     {costumer: watchAll.costumer,
+                            //     annotation: watchAll.annotation,
+                            //     object: objects.data?.find(object => object.name === objectSelected)?.id as number})
+                            setSectionModalActive(!sectionModalActive)
+                        }}
+                        >
                             Добавить ВРУ
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md">
+                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200" disabled>
                             Распеределить по ВРУ
                         </button>
                     </div>
@@ -92,7 +131,15 @@ function CreateCalculation() {
                     </div>
                 </div>
                 <CalculationTable/>
-            </div>
+                <AddSectionModal 
+                active={sectionModalActive} 
+                setActive={setSectionModalActive} 
+                calculatingData={
+                    {costumer: watchAll.costumer,
+                    annotation: watchAll.annotation,
+                    object: objects.data?.find(object => object.name === objectSelected)?.id as number}
+                    }/>
+            </form>
             <Footer/>
         </div>
     );
