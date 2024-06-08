@@ -68,24 +68,3 @@ class ConsumerSerializer(serializers.ModelSerializer):
             validated_data["power_per_unit"] = type_consumer.default_power_per_unit
         validated_data["cos"] = type_consumer.default_cos
         return super().create(validated_data)
-
-        # self.total_capacity = self.power_per_unit * self.volume
-        # self.coefficient_regional = 1
-        # self.coefficient_demand = 1
-        # self.tg = sqrt(abs(1 - 1 / self.cos * self.cos))
-        #
-        # if self.type is Consumer.Type.FLAT:
-        #     self.total_capacity = None
-        #     region = self.section.calculating.object.region_coefficient
-        #     self.coefficient_regional = 0.81 if region is Object.Region.CENTRAL else 0.91
-        #     self.pp = self.volume * self.coefficient_regional * self.coefficient_demand * self.coefficient_maximum_mismatch
-        #     # todo логика для коэф.спроса
-        # elif self.type is Consumer.Type.ELEVATOR:
-        #     # todo логика для коэф.спроса
-        #     pass
-        # else:
-        #     self.pp = self.total_capacity * self.coefficient_regional * self.coefficient_demand * self.coefficient_maximum_mismatch
-        #     self.qp = self.pp * self.tg
-        #     self.sp = self.pp / self.cos
-        #
-        # return super().create(validated_data)

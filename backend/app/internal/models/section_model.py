@@ -31,6 +31,8 @@ class Section(models.Model):
                             cos=consumer.cos,
                         )
                     )
+
+                [flat.calculate_coefficient_demand() for flat in flats]
                 consumers_separate.extend(flats)
             else:
                 consumers_separate.append(consumer)
@@ -94,6 +96,10 @@ class Section(models.Model):
                 if len(inputs) > 20:
                     raise DistributeError("Не удалось автоматически распределить потребителей")
                 return self.distribute_consumers(count_input + 2)
+
+        # [i.save() for i in inputs]
+        # [print(i.pk, i.get_result_current_by_consumers(consumers)) for i in inputs]
+        # [print(c.name, c.result_current, c.input) for c in consumers]
 
         self.check_distribute([i.get_result_current_by_consumers(consumers) for i in inputs])
         [input.save() for input in inputs]
