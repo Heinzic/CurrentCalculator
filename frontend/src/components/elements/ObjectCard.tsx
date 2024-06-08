@@ -1,11 +1,18 @@
+import { useNavigate } from "react-router-dom"
 import { ICalculating } from "../../store/models/ICalculations"
 
 interface ObjectCardProps extends ICalculating {}
 
 function ObjectCard({id, date, object, user, annotation, costumer}: ObjectCardProps) {
+
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/calculation/${id}`)
+    }
+
     return (
         <>
-            <div className="max-w-[640px] w-[640px] bg-[#D0DADF] mt-[20px] rounded-md border-[2px] hover:border-[#454F55]">
+            <div className="max-w-[640px] w-[640px] bg-[#D0DADF] mt-[20px] rounded-md border-[2px] hover:border-[#454F55]" onClick={handleClick}>
                 <div className="p-[12px] pb-1">
                     <div className="flex flex-row bg-[#FFFFFF] rounded-md text-xl px-1 gap-[10px]">
                         <ul>

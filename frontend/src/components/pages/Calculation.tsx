@@ -12,7 +12,7 @@ import { useCreateCalculationMutation } from "../../store/apis/CalculationsAPI";
 import { useCreateSectionMutation } from "../../store/apis/SectionAPI";
 import { ISectionCreate } from "../../store/models/ISections";
 import AddSectionModal from "../elements/AddSectionModal";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 interface ICalculationsForm {
     // date: Date
@@ -20,16 +20,19 @@ interface ICalculationsForm {
     annotation: string
 }
 
-function CreateCalculation() {
-    const navigate = useNavigate()
+function Calculation() {
+
+    const id = useParams()
+    const {state} = useLocation()
+    
     const objects = useGetObjectsListQuery()
-    const [createCalculation] = useCreateCalculationMutation()
+    const [createSection] = useCreateSectionMutation()
 
     const [objectOpen, setObjectOpen] = useState(false)
     const [startDate, setStartDate] = useState<Date | null>(null)
     const [objectSelected, setObjectSelected] = useState('')
-    const [sectionModalActive, setSectionModalActive] = useState(false)
-    const {register, watch} = useForm<ICalculationsForm>({mode:"onBlur"})
+    const [sectionModalActive, setSectionModalActive] = useState(state)
+    const {register, handleSubmit, control, watch} = useForm<ICalculationsForm>({mode:"onBlur"})
     const watchAll = watch()
 
     function handleClick(e: React.MouseEvent<HTMLButtonElement>, option: boolean, setOption: React.Dispatch<React.SetStateAction<boolean>>) {
@@ -37,13 +40,13 @@ function CreateCalculation() {
         setOption(!option)
     }
 
-    async function createCalculations(data: ICalculatingCreate) {
-        return await createCalculation(data)
+
+    async function addSection(session: ISectionCreate, calc: ICalculatingCreate) {
+        await createSection(session)
     }
 
     async function handleAddSection(info: ICalculatingCreate) {
-        const calc = (await createCalculations(info)).data
-        navigate(`/calculation/${calc?.id}`, {state: {isModalOpen: true}})
+
     }
 
     return ( 
@@ -101,21 +104,18 @@ function CreateCalculation() {
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
                     <div className="flex gap-[19px]">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200" disabled>
+                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200">
                             Добавить потребителя
                         </button>
                         <button className="bg-[#D0D4D9] px-[40px] rounded-md" type="button"
                         onClick={(e) => {
                             e.preventDefault()
-                            handleAddSection(
-                                {costumer: watchAll.costumer,
-                                annotation: watchAll.annotation,
-                                object: objects.data?.find(object => object.name === objectSelected)?.id as number})
+                            setSectionModalActive(!sectionModalActive)
                         }}
                         >
                             Добавить ВРУ
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200" disabled>
+                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200">
                             Распеределить по ВРУ
                         </button>
                     </div>
@@ -140,4 +140,4 @@ function CreateCalculation() {
     );
 }
 
-export default CreateCalculation;
+export default Calculation;

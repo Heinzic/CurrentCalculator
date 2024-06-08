@@ -39,7 +39,6 @@ export const customFetchBase:BaseQueryFn<string | FetchArgs, unknown, FetchBaseQ
                 
             } catch (e) {
                 tokenService.removeTokens()
-                window.location.reload()
             }
             finally {
                 release
