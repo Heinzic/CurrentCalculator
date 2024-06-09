@@ -32,6 +32,7 @@ function Main() {
                             annotation={e.annotation}
                             costumer={e.costumer}
                             id={e.id}
+                            key={e.id}
                             />                        
                     ))}
 

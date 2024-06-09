@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../base/Footer";
 import Header from "../base/Header";
 import CalculationTable from "../elements/CalculationTable";
@@ -6,13 +6,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGetObjectsListQuery } from "../../store/apis/ObjectsAPI";
 import RadioObjectsList from "../elements/RadioObjectsList";
-import { useForm, Controller } from "react-hook-form";
-import { ICalculatingCreate } from "../../store/models/ICalculations";
-import { useCreateCalculationMutation } from "../../store/apis/CalculationsAPI";
-import { useCreateSectionMutation } from "../../store/apis/SectionAPI";
-import { ISectionCreate } from "../../store/models/ISections";
+import { useForm } from "react-hook-form";
+import { ICalculatingDetail } from "../../store/models/ICalculations";
+import { useGetCalculationDetailQuery } from "../../store/apis/CalculationsAPI";
 import AddSectionModal from "../elements/AddSectionModal";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import formateDate from "../functions/FormateDate";
 
 interface ICalculationsForm {
     // date: Date
@@ -22,34 +21,54 @@ interface ICalculationsForm {
 
 function Calculation() {
 
-    const id = useParams()
+    const {id} = useParams()
     const {state} = useLocation()
+    const navigate = useNavigate()
     
     const objects = useGetObjectsListQuery()
-    const [createSection] = useCreateSectionMutation()
+    const [details, setDetails] = useState<ICalculatingDetail>()
+    
 
+    if (id === undefined || !id) {
+        navigate ('/')
+        return
+    } 
+    const {data, error, isLoading} = useGetCalculationDetailQuery(id)
+
+    useEffect(() =>{
+        getCalc()
+    }, [isLoading])
+        
     const [objectOpen, setObjectOpen] = useState(false)
-    const [startDate, setStartDate] = useState<Date | null>(null)
-    const [objectSelected, setObjectSelected] = useState('')
+    const [startDate, setStartDate] = useState<Date | null>(getDate(details?.date))
+
+    const [objectSelected, setObjectSelected] = useState('TEST')
     const [sectionModalActive, setSectionModalActive] = useState(state)
-    const {register, handleSubmit, control, watch} = useForm<ICalculationsForm>({mode:"onBlur"})
-    const watchAll = watch()
+    
+    const {register} = useForm<ICalculationsForm>({mode:"onBlur"})
 
     function handleClick(e: React.MouseEvent<HTMLButtonElement>, option: boolean, setOption: React.Dispatch<React.SetStateAction<boolean>>) {
         e.preventDefault()
         setOption(!option)
     }
 
-
-    async function addSection(session: ISectionCreate, calc: ICalculatingCreate) {
-        await createSection(session)
+    function getDate(date: Date | undefined) {
+        if (date === undefined) return new Date()
+        console.log(date);
+        
+        formateDate(date.toString())
+        return date as Date
     }
 
-    async function handleAddSection(info: ICalculatingCreate) {
-
+    function getCalc() {
+        if ((error || data === undefined) && !isLoading) {
+            navigate('/')
+        } else {
+           setDetails(data)
+        }
     }
-
-    return ( 
+    
+    return (details) && ( 
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
             <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow h-[1000px] flex flex-col gap-[14px]">
@@ -96,10 +115,10 @@ function Calculation() {
                 </div>
                 <div className="flex flex-row gap-[17px]">
                     <div className="">
-                        <input {...register('costumer')} type="text" placeholder="Заказчик" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('costumer')} type="text" placeholder={details?.costumer} value={details?.costumer? details.costumer : ''} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                     <div className="">
-                        <input {...register('annotation')} type="text" placeholder="Примечание" className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('annotation')} type="text" placeholder={details?.annotation} value={details?.annotation? details.annotation : ''} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
@@ -129,11 +148,8 @@ function Calculation() {
                 <AddSectionModal 
                 active={sectionModalActive} 
                 setActive={setSectionModalActive} 
-                calculatingData={
-                    {costumer: watchAll.costumer,
-                    annotation: watchAll.annotation,
-                    object: objects.data?.find(object => object.name === objectSelected)?.id as number}
-                    }/>
+                id={Number(id)}
+                />
             </form>
             <Footer/>
         </div>

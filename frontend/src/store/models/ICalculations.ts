@@ -1,3 +1,5 @@
+import { ISectionDetail } from "./ISections"
+
 export interface ICalculatingCreate {
     costumer?: string
     annotation?: string
@@ -6,6 +8,10 @@ export interface ICalculatingCreate {
 
 export interface ICalculating extends ICalculatingCreate {
     id?:number
-    date: string
+    date: Date
     user: number
+}
+
+export interface ICalculatingDetail extends ICalculating {
+    sections: ISectionDetail[]
 }

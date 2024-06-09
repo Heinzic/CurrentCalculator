@@ -1,3 +1,5 @@
+import { IInputPowerDetail } from "./IInputs"
+
 export interface ISectionCreate {
     name: string
     power_limit?: number
@@ -5,5 +7,9 @@ export interface ISectionCreate {
 }
 
 export interface ISection extends ISectionCreate {
-    id: number
+    id?: number
+}
+
+export interface ISectionDetail extends ISection {
+    inputs: IInputPowerDetail[]
 }

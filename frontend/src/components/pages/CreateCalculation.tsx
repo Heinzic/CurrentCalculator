@@ -6,16 +6,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGetObjectsListQuery } from "../../store/apis/ObjectsAPI";
 import RadioObjectsList from "../elements/RadioObjectsList";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ICalculatingCreate } from "../../store/models/ICalculations";
 import { useCreateCalculationMutation } from "../../store/apis/CalculationsAPI";
-import { useCreateSectionMutation } from "../../store/apis/SectionAPI";
-import { ISectionCreate } from "../../store/models/ISections";
-import AddSectionModal from "../elements/AddSectionModal";
 import { useNavigate } from "react-router-dom";
 
 interface ICalculationsForm {
-    // date: Date
     costumer: string
     annotation: string
 }
@@ -126,14 +122,10 @@ function CreateCalculation() {
                     </div>
                 </div>
                 <CalculationTable/>
-                <AddSectionModal 
+                {/* <AddSectionModal 
                 active={sectionModalActive} 
                 setActive={setSectionModalActive} 
-                calculatingData={
-                    {costumer: watchAll.costumer,
-                    annotation: watchAll.annotation,
-                    object: objects.data?.find(object => object.name === objectSelected)?.id as number}
-                    }/>
+                /> */}
             </form>
             <Footer/>
         </div>
