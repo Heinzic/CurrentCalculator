@@ -10,7 +10,7 @@ class Section(models.Model):
     calculating = models.ForeignKey("Calculating", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} | id: {self.id}"
+        return f"{self.name} | id: {self.pk}"
 
     @staticmethod
     def separate_flats(consumers, count):

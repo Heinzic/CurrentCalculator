@@ -1,0 +1,30 @@
+version: '3.8'
+#
+services:
+  django:
+    build: ./backend/
+    container_name: api
+    restart: always
+    ports:
+      - 8080:8000
+    command: >
+      sh -c "python manage.py collectstatic --noinput && \
+      python manage.py makemigrations && \
+      python manage.py migrate && \
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - django_static_volume:/usr/src/app/static
+      - django_media_volume:/usr/src/app/media
+
+  node:
+    build: ./frontend/
+    container_name: web
+    restart: always
+    ports:
+      - 5173:5173
+    command: npm run dev
+    depends_on:
+      - django
+volumes:
+  django_static_volume:
+  django_media_volume:

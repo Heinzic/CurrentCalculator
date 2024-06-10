@@ -72,7 +72,7 @@ class Consumer(models.Model):
     cos = models.DecimalField(default=0.95, decimal_places=2, max_digits=3)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"id: {self.pk}|{self.name}"
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if self.section and self.type.special == ConsumerType.FLAT:
@@ -135,7 +135,7 @@ class Consumer(models.Model):
     @property
     def coefficient_maximum_mismatch(self):
         if self.input and self.input.max_consumer:
-            return Decimal("1") if self.input.max_consumer.id == self.id else Decimal("0.9")
+            return Decimal("1") if self.input.max_consumer.pk == self.pk else Decimal("0.9")
         else:
             return Decimal("1")
 
