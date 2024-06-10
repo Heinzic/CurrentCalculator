@@ -1,27 +1,18 @@
-import { NavLink, redirect, useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import UnloggedHeader from "../base/UnloggedHeader"
 import Footer from "../base/Footer"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useLogInUserMutation } from "../../store/apis/AuthAPI"
 import { RootState } from "../../store/store"
 import { connect } from "react-redux"
-import { useEffect } from "react"
 
 interface ILoginForm {
     username:'',
     password:''
 }
 
-interface LoginProps {
-    isAuth: boolean
-}
+function Login() {
 
-function Login({isAuth}: LoginProps) {
-
-    // useEffect(() =>{
-    //     if (isAuth) navigate('/')
-    //     console.log(isAuth)
-    // }, [])
     const [logIn, ] = useLogInUserMutation()
     const navigate = useNavigate()
     const {register, handleSubmit, formState:{errors, }, resetField, setError} = useForm<ILoginForm>({mode:'onBlur'})

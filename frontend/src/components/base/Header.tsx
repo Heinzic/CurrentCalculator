@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { RootState } from "../../store/store"
 import { connect } from "react-redux"
-import { SetStateAction, useState } from "react"
+import { useState } from "react"
 import CreateObjectModal from "../elements/CreateObjectModal"
 
 interface HeaderProps {
@@ -61,4 +61,4 @@ function mapStateToProps (state: RootState) {
 }
     
 
-export default connect(mapStateToProps, {})(Header)
+export default connect(mapStateToProps)(Header)

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import Footer from "../base/Footer"
 import Header from "../base/Header"
 import { useLogOutUserMutation } from "../../store/apis/AuthAPI"

@@ -3,7 +3,7 @@ import { ICalculating } from "../../store/models/ICalculations"
 
 interface ObjectCardProps extends ICalculating {}
 
-function ObjectCard({id, date, object, user, annotation, costumer}: ObjectCardProps) {
+function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
 
     const navigate = useNavigate()
     const handleClick = () => {
@@ -52,7 +52,7 @@ function ObjectCard({id, date, object, user, annotation, costumer}: ObjectCardPr
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>{date}</span>
+                                <span>{date.toDateString()}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
