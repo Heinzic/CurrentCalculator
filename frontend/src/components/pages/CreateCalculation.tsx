@@ -122,10 +122,6 @@ function CreateCalculation() {
                     </div>
                 </div>
                 <CalculationTable/>
-                {/* <AddSectionModal 
-                active={sectionModalActive} 
-                setActive={setSectionModalActive} 
-                /> */}
             </form>
             <Footer/>
         </div>
