@@ -52,7 +52,7 @@ function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>{date.toDateString()}</span>
+                                <span>{String(date)}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
