@@ -1,6 +1,10 @@
+from app.internal.views.consumer_view import (
+    ConsumerCreateAPIView,
+    ConsumerDetailAPIView,
+    ConsumerListAPIView,
+    ConsumerTypeAPIView,
+)
 from django.urls import path
-from app.internal.views.consumer_view import ConsumerListAPIView, ConsumerDetailAPIView, ConsumerCreateAPIView, \
-    ConsumerTypeAPIView
 
 urlpatterns = [
     path("list/<int:section_id>/", ConsumerListAPIView.as_view(), name="list-consumers"),

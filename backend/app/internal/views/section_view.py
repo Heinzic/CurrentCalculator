@@ -1,11 +1,13 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView, CreateAPIView
-from rest_framework.permissions import IsAuthenticated
-
 from app.internal.models.calculating_model import Calculating
 from app.internal.models.section_model import Section
-from app.internal.serializers.section_serializer import SectionDetailSerializer, SectionSerializer, \
-    SectionCreateSerializer
+from app.internal.serializers.section_serializer import (
+    SectionCreateSerializer,
+    SectionDetailSerializer,
+    SectionSerializer,
+)
 from app.internal.utils.permissions import ValidLicensePermission
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 
 class SectionListAPIView(ListAPIView):
@@ -14,8 +16,9 @@ class SectionListAPIView(ListAPIView):
 
     def get_queryset(self):
         allowed_queryset_calculating = [calc.pk for calc in Calculating.objects.filter(user__id=self.request.user.id)]
-        return Section.objects.filter(calculating__id__in=allowed_queryset_calculating,
-                                      calculating__id=self.kwargs["calculating_id"])
+        return Section.objects.filter(
+            calculating__id__in=allowed_queryset_calculating, calculating__id=self.kwargs["calculating_id"]
+        )
 
 
 class SectionDetailRetrieveAPIView(RetrieveAPIView):

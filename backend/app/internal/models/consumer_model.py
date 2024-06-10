@@ -1,17 +1,23 @@
 import math
 from decimal import Decimal
 
-from django.db import models
-
 from app.internal.models.object_model import Object
+from django.db import models
 
 
 class ConsumerType(models.Model):
     FLAT = "Flat"
     ELEVATOR = "Elevator"
+    ELEVATOR_PP = "Elevator-PP"
     SP256 = "СП-256"
     OTHER = "Other"
-    SPECIAL_CHOICE = [(FLAT, "Квартира"), (ELEVATOR, "Лифт"), (OTHER, "Другое"), (SP256, "СП-256")]
+    SPECIAL_CHOICE = [
+        (FLAT, "Квартира"),
+        (ELEVATOR, "Лифт"),
+        (ELEVATOR_PP, "Лифт ПП"),
+        (OTHER, "Другое"),
+        (SP256, "СП-256"),
+    ]
     name = models.CharField(max_length=255)
     special = models.CharField(max_length=255, choices=SPECIAL_CHOICE, default="Квартира")
     unit_measurement = models.CharField(max_length=255)
@@ -23,106 +29,39 @@ class ConsumerType(models.Model):
 
 
 class Consumer(models.Model):
-    # region consumers
-    # FLAT_10 = ("FLAT_10", "Квартира(с эл.плит) 10 квт")
-    # FLAT_10C = ("FLAT_10C", "Квартира(с эл.плит) 10 квт с кондиционерами")
-    # FLAT_G10 = ("FLAT_G10", "Квартира(с эл.плит) более 10 квт")
-    # FLAT_G10C = ("FLAT_G10C", "Квартира(с эл.плит) более 10 квт с кондиционерами")
-    # FLAT_L10 = ("FLAT_L10", "Квартира(с эл.плит) менее 10 квт")
-    # FLAT_L10C = ("FLAT_L10C", "Квартира(с эл.плит) менее 10 квт с кондиционерами;")
-    # ELECTRIC_PANEL1 = ("EL_PANEL1", "Щит СС")
-    # ELECTRIC_PANEL2 = ("EL_PANEL2", "Щит СПЗ СС")
-    # ROSETTE = ("ROSETTE", "Розеточная сеть")
-    # ROOM_L100 = ("ROOM_L100", "Встроенные помещения (БКТ), при площади меньше 100 м2")
-    # ROOM_G100 = ("ROOM_G100", "Встроенные помещения (БКТ), при площади больше 100 м2")
-    # VENTILATION = ("VNTL", "Общеобменная вентиляция, небольших объектов")
-    # VENTILATION_L75 = ("VNTL_L75", "Общеобменная вентиляция, не высотных зданий (до 75 м)")
-    # VENTILATION_L100 = ("VNTL_L100", "Общеобменная вентиляция, высотных зданий (до 100 м)")
-    # VENTILATION_L200 = ("VNTL_L200", "Общеобменная вентиляция, уникальных зданий (до 200 м)")
-    # ELEVATOR = ("ELVTR", "Лифт")
-    # ELEVATOR_PP = ("ELVTR_PP", "Лифт ПП")
-    # EL_CURTAIN_HEAT = ("EL_CRTN", "Электрические тепловые завесы (на ТЭНах)")
-    # WTR_CURTAIN_HEAT = ("WTR_CRTN", "Водяные тепловые завесы")
-    # LIGHT = ("LIGHT", "Освещение")
-    # PANEL_LIGHT = ("P_LIGHT", "Щит освещения")
-    # PANEL_OUT_LIGHT = ("P_OUTLIGHT", "Щит наружного освещения")
-    # PANEL_FACADE_LIGHT = ("P_FACLIGHT", "Щит фасадного освещения")
-    # EL_PANEL_HEAT = ("ELPANHEAT", "Отопление электрощитовых")
-    # PUMP_STATION_L75 = ("PUMP_L75", "Насосная станция, не высоттных зданий (до 75 м)")
-    # PUMP_STATION_L100 = ("PUMP_L100", "Насосная станция, не высоттных зданий (до 100 м)")
-    # PUMP_STATION_L200 = ("PUMP_L200", "Насосная станция, не высоттных зданий (до 200 м)")
-    # HEAT_CENTER_L75 = ("HTCNTR_L75", "ИТП, не высоттных зданий (до 75 м)")
-    # HEAT_CENTER_L100 = ("HTCNTR_L100", "ИТП, не высоттных зданий (до 100 м)")
-    # HEAT_CENTER_L200 = ("HTCNTR_L200", "ИТП, не высоттных зданий (до 200 м)")
-    # PARKING_GATE = ("PRKNG_GATE", "Ворота в паркинг")
-    # # SP256
-    #
-    # Type = {
-    #     "Flat": {
-    #         FLAT_10,
-    #         FLAT_10C,
-    #         FLAT_G10,
-    #         FLAT_G10C,
-    #         FLAT_L10,
-    #         FLAT_L10C
-    #     },
-    #     "Electric panel": {
-    #         ELECTRIC_PANEL1,
-    #         ELECTRIC_PANEL1
-    #     },
-    #     "Room": {
-    #         ROOM_L100,
-    #         ROOM_G100
-    #     },
-    #     "Ventilation": {
-    #         VENTILATION,
-    #         VENTILATION_L75,
-    #         VENTILATION_L100,
-    #         VENTILATION_L200
-    #     },
-    #     "Elevator": {
-    #         ELEVATOR,
-    #         ELEVATOR_PP
-    #     },
-    #     "Curtain heat": {
-    #         EL_CURTAIN_HEAT,
-    #         WTR_CURTAIN_HEAT
-    #     },
-    #     "Lightning and panel": {
-    #         LIGHT,
-    #         PANEL_LIGHT,
-    #         PANEL_OUT_LIGHT,
-    #         PANEL_FACADE_LIGHT
-    #     },
-    #     "Pump station": {
-    #         PUMP_STATION_L75,
-    #         PUMP_STATION_L100,
-    #         PUMP_STATION_L200
-    #     },
-    #     "Heat center": {
-    #         HEAT_CENTER_L75,
-    #         HEAT_CENTER_L100,
-    #         HEAT_CENTER_L200
-    #     },
-    #     ROSETTE[0]: ROSETTE[1],
-    #     EL_PANEL_HEAT[0]: EL_PANEL_HEAT[1],
-    #     PARKING_GATE[0]: PARKING_GATE[1]
-    # }
-    # ppu_name = "power_per_unit"
-    # cos_name = "cos"
-    # CHARACTERISTIC = {
-    #     FLAT_10[0]: {"description": FLAT_10[1], ppu_name: 10, cos_name: Decimal(0.98)},
-    #     FLAT_10C[0]: {"description": FLAT_10C[1], ppu_name: 10, cos_name: Decimal(0.93)},
-    #     FLAT_G10[0]: {"description": FLAT_G10[1], ppu_name: 11, cos_name: Decimal(0.98)},
-    #     FLAT_G10C[0]: {"description": FLAT_G10C[1], ppu_name: 11, cos_name: Decimal(0.93)},
-    #     FLAT_L10[0]: {"description": FLAT_L10[1], ppu_name: 9, cos_name: Decimal(0.98)},
-    #     FLAT_L10C[0]: {"description": FLAT_L10C[1], ppu_name: 9, cos_name: Decimal(0.93)},
-    #     ELEVATOR[0]: {"description": ELEVATOR[1], ppu_name: 20, cos_name: Decimal(0.65)},
-    #     ELEVATOR_PP[0]: {"description": ELEVATOR_PP[1], ppu_name: 20, cos_name: Decimal(0.65)},
-    # }
-    # endregion
-
-    section = models.ForeignKey("Section", on_delete=models.CASCADE, verbose_name="секция")
+    TABLE_F71 = (
+        (5, 10),
+        (6, 5.1),
+        (9, 3.8),
+        (12, 3.2),
+        (15, 2.8),
+        (18, 2.6),
+        (24, 2.2),
+        (40, 1.95),
+        (60, 1.7),
+        (100, 1.5),
+        (200, 1.36),
+        (400, 1.27),
+        (600, 1.23),
+        (1000, 1.19),
+    )
+    TABLE_F73 = (
+        (5, 1),
+        (6, 0.51),
+        (9, 0.38),
+        (12, 0.32),
+        (15, 0.29),
+        (18, 0.26),
+        (24, 0.24),
+        (40, 0.2),
+        (60, 0.18),
+        (100, 0.16),
+        (200, 0.14),
+        (400, 0.13),
+        (600, 0.11),
+    )
+    TABLE_E74 = ((2, 0.9), (3, 0.9), (4, 0.8), (5, 0.8), (6, 0.75), (10, 0.6), (20, 0.5), (25, 0.4))
+    section = models.ForeignKey("Section", on_delete=models.CASCADE, verbose_name="секция", null=True)
     input = models.ForeignKey("InputPower", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="ввод")
     name = models.CharField(max_length=255, verbose_name="имя")
     type = models.ForeignKey("ConsumerType", on_delete=models.SET_NULL, null=True, verbose_name="тип")
@@ -133,14 +72,14 @@ class Consumer(models.Model):
     cos = models.DecimalField(default=0.95, decimal_places=2, max_digits=3)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"id: {self.pk}|{self.name}"
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if self.type.special == ConsumerType.FLAT:
+        if self.section and self.type.special == ConsumerType.FLAT:
             region = self.section.calculating.object.region_coefficient
             self.coefficient_regional = Decimal("0.81") if region is Object.Region.CENTRAL else Decimal("0.91")
-        else:
-            self.coefficient_regional = 1
+
+        self.calculate_coefficient_demand()
 
         super().save(force_insert, force_update, using, update_fields)
 
@@ -151,6 +90,42 @@ class Consumer(models.Model):
             self.input.max_consumer = self
             self.input.save()
 
+    def calculate_coefficient_demand(self):
+        type_consumer = self.type.special
+        if (
+            type_consumer == ConsumerType.FLAT
+            or type_consumer == ConsumerType.ELEVATOR
+            or type_consumer == ConsumerType.ELEVATOR_PP
+        ):
+
+            volume = float(self.volume)
+            if type_consumer == ConsumerType.FLAT:
+                table = self.TABLE_F71 if self.power_per_unit <= 10 else self.TABLE_F73
+                if self.power_per_unit > 10 and self.input:
+                    consumers = Consumer.objects.filter(
+                        input=self.input, type__special=ConsumerType.FLAT, power_per_unit__gt=Decimal("10")
+                    )
+                    volume = sum([cons.volume for cons in consumers])
+            else:
+                table = self.TABLE_E74
+
+            demand = table[-1][1]
+            for i, (v, p) in enumerate(table):
+                if volume <= v:
+                    prev_v, prev_p = table[i - 1]
+                    demand = table[0][1] if volume <= table[0][0] else p + (prev_p - p) * (v - volume) / (v - prev_v)
+                    break
+            if type_consumer == ConsumerType.FLAT:
+                self.coefficient_demand = (
+                    round(Decimal(str(demand)), 3) if self.power_per_unit >= 10 else round(Decimal(str(demand / 10)), 3)
+                )
+
+            else:
+                self.coefficient_demand = round(Decimal(str(demand)), 3)
+
+        else:
+            self.coefficient_demand = Decimal("1.000")
+
     @property
     def total_capacity(self):
         if self.type.special == ConsumerType.FLAT:
@@ -160,9 +135,9 @@ class Consumer(models.Model):
     @property
     def coefficient_maximum_mismatch(self):
         if self.input and self.input.max_consumer:
-            return Decimal('1') if self.input.max_consumer.id == self.id else Decimal('0.9')
+            return Decimal("1") if self.input.max_consumer.pk == self.pk else Decimal("0.9")
         else:
-            return Decimal('0.9')
+            return Decimal("1")
 
     @property
     def tg(self):
@@ -171,7 +146,8 @@ class Consumer(models.Model):
     @property
     def pp(self):
         coefficient_multiple = Decimal(
-            self.coefficient_regional * self.coefficient_demand * self.coefficient_maximum_mismatch)
+            self.coefficient_regional * self.coefficient_demand * self.coefficient_maximum_mismatch
+        )
         if self.type.special == ConsumerType.FLAT:
             return Decimal(self.volume * coefficient_multiple)
         else:

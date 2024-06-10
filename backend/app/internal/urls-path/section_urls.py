@@ -1,7 +1,10 @@
+from app.internal.views.section_view import (
+    SectionCreateAPIView,
+    SectionDetailAPIView,
+    SectionDetailRetrieveAPIView,
+    SectionListAPIView,
+)
 from django.urls import path
-
-from app.internal.views.section_view import SectionListAPIView, SectionDetailAPIView, SectionDetailRetrieveAPIView, \
-    SectionCreateAPIView
 
 urlpatterns = [
     path("<int:id>/", SectionDetailAPIView.as_view(), name="section-detail"),

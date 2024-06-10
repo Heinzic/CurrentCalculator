@@ -9,4 +9,4 @@ class Calculating(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"id: {self.id} | creator: {self.user.username}"
+        return f"id: {self.pk} | creator: {self.user.username}"

@@ -1,9 +1,9 @@
 from app.internal.models.calculating_model import Calculating
 from app.internal.models.object_model import Object
+from app.internal.serializers.object_serializer import ObjectSerializer
+from app.internal.serializers.section_serializer import SectionDetailSerializer
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError
-
-from app.internal.serializers.section_serializer import SectionDetailSerializer
 
 
 class CalculatingSerializer(serializers.ModelSerializer):
@@ -27,6 +27,7 @@ class CalculatingSerializer(serializers.ModelSerializer):
 
 class CalculatingDetailSerializer(serializers.ModelSerializer):
     sections = SectionDetailSerializer(source="section_set", many=True)
+    object = ObjectSerializer()
 
     class Meta:
         model = Calculating

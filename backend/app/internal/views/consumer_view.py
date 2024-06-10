@@ -1,10 +1,9 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, GenericAPIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-
 from app.internal.models.consumer_model import Consumer, ConsumerType
 from app.internal.serializers.consumer_serializer import ConsumerSerializer, ConsumerTypeSerializer
 from app.internal.utils.permissions import ValidLicensePermission
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 
 class ConsumerListAPIView(ListAPIView):
