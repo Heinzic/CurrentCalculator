@@ -1,5 +1,6 @@
 from app.internal.models.input_power_model import InputPower
 from app.internal.models.section_model import Section
+from app.internal.serializers.consumer_serializer import ConsumerSerializer
 from app.internal.serializers.input_power_serializer import InputPowerDetailSerializer, InputPowerSerializer
 from rest_framework import serializers
 
@@ -18,8 +19,9 @@ class SectionCreateSerializer(serializers.ModelSerializer):
 
 
 class SectionDetailSerializer(serializers.ModelSerializer):
-    inputs = InputPowerDetailSerializer(source="inputpower_set", many=True)
+    consumers = ConsumerSerializer(source="consumer_set", many=True)
+    inputs = InputPowerSerializer(source="inputpower_set", many=True)
 
     class Meta:
         model = Section
-        fields = ["id", "name", "power_limit", "calculating", "inputs"]
+        fields = ["id", "name", "power_limit", "calculating", "inputs", "consumers"]
