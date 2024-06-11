@@ -5,15 +5,17 @@ import { UsersAPI } from './apis/UserAPI';
 import { ObjectsAPI } from './apis/ObjectsAPI';
 import { CalculationsAPI } from './apis/CalculationsAPI';
 import { SectionsAPI } from './apis/SectionAPI';
+import { ConsumersAPI } from './apis/ConsumersAPI';
 
 
 const rootReducer = combineReducers({
-    [AuthAPI.reducerPath]: AuthAPI.reducer,
     authReducer,
+    [AuthAPI.reducerPath]: AuthAPI.reducer,
     [UsersAPI.reducerPath]: UsersAPI.reducer,
     [ObjectsAPI.reducerPath]: ObjectsAPI.reducer,
     [CalculationsAPI.reducerPath]: CalculationsAPI.reducer,
-    [SectionsAPI.reducerPath]: SectionsAPI.reducer
+    [SectionsAPI.reducerPath]: SectionsAPI.reducer,
+    [ConsumersAPI.reducerPath]: ConsumersAPI.reducer,
 })
 
 export const setupStore = () => {
@@ -25,7 +27,8 @@ export const setupStore = () => {
                 UsersAPI.middleware,
                 ObjectsAPI.middleware,
                 CalculationsAPI.middleware,
-                SectionsAPI.middleware
+                SectionsAPI.middleware,
+                ConsumersAPI.middleware
                 ),
             
     })

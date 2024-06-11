@@ -7,6 +7,7 @@ const url = 'calculations'
 export const CalculationsAPI = createApi({
     reducerPath: 'CalculationsAPI',
     baseQuery: customFetchBase,
+    tagTypes:['Calculations'],
     endpoints: (builder) => ({
         createCalculation: builder.mutation<ICalculating, ICalculatingCreate>({
             query: (calc) => ({
@@ -22,8 +23,9 @@ export const CalculationsAPI = createApi({
         }),
         getCalculationDetail: builder.query<ICalculatingDetail, string>({
             query: (id) => ({
-                url:`${url}/detail/${id}`
-            })
+                url:`${url}/detail/${id}`,
+            }),
+            providesTags:['Calculations']
         })
     })
     }

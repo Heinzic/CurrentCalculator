@@ -18,3 +18,22 @@ export interface IConsumer {
     sp?: string
     result_current?: string
 }
+
+export interface IConsumerType {
+    id?: number
+    name: string
+    special?: string
+    unit_measurement: string
+    default_power_per_unit: string
+    default_cos: string
+}
+
+export interface IConsumerCreate{
+    section?: number
+    // input?: number
+    name:string
+    type: number
+    volume?: string
+    power_per_unit?: string
+    coefficient_demand?: string
+}

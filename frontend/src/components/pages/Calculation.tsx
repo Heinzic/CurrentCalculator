@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { useGetCalculationDetailQuery } from "../../store/apis/CalculationsAPI";
 import AddSectionModal from "../elements/AddSectionModal";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import AddConsumerModal from "../elements/AddConsumerModal";
+import { useCreateConsumerMutation } from "../../store/apis/ConsumersAPI";
 
 interface ICalculationsForm {
     costumer: string
@@ -25,6 +27,8 @@ function Calculation() {
         return
     } 
     const {data, isError} = useGetCalculationDetailQuery(id)
+    const [createConsumer] = useCreateConsumerMutation()
+
 
     useEffect(() =>{
         getData(id)
@@ -35,6 +39,7 @@ function Calculation() {
     }
         
     const [objectOpen, setObjectOpen] = useState(false)
+    const [consumerModalActive, setConsumerModalActive] = useState(false)
     const [sectionModalActive, setSectionModalActive] = useState(state)
     
     const {register} = useForm<ICalculationsForm>({mode:"onBlur"})
@@ -48,14 +53,14 @@ function Calculation() {
         const response = await useGetCalculationDetailQuery(id)
         return response
     }
-    
+
     return (data) && ( 
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
             <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow h-[1000px] flex flex-col gap-[14px]">
                 <h1 className="my-0 ">Создание расчета мощности</h1>
                 <div className="flex gap-[24px] ">
-                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md" onClick={(e) => handleClick(e, sectionModalActive, setSectionModalActive)}>
+                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md" type="button">
                         Сохранить
                     </button>
                     <button className="bg-[#D0D4D9] px-[40px] rounded-md">
@@ -87,7 +92,7 @@ function Calculation() {
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
                     <div className="flex gap-[19px]">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200">
+                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200" onClick={(e) => handleClick(e, consumerModalActive, setConsumerModalActive)}>
                             Добавить потребителя
                         </button>
                         <button className="bg-[#D0D4D9] px-[40px] rounded-md" type="button"
@@ -113,11 +118,15 @@ function Calculation() {
                     sections={data.sections}
                     />
                 </div>
-                
                 <AddSectionModal 
                 active={sectionModalActive} 
                 setActive={setSectionModalActive} 
                 id={Number(id)}
+                />
+                <AddConsumerModal
+                active={consumerModalActive}
+                setActive={setConsumerModalActive}
+                sections={data.sections}
                 />
             </form>
             <Footer/>
