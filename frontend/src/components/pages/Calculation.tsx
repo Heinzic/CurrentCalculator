@@ -108,9 +108,12 @@ function Calculation() {
                         </button>
                     </div>
                 </div>
-                <CalculationTable
-                sections={data.sections}
-                />
+                <div className="">
+                    <CalculationTable
+                    sections={data.sections}
+                    />
+                </div>
+                
                 <AddSectionModal 
                 active={sectionModalActive} 
                 setActive={setSectionModalActive} 
