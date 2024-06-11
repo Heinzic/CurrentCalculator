@@ -121,7 +121,9 @@ function CreateCalculation() {
                         </button>
                     </div>
                 </div>
-                <CalculationTable/>
+                <CalculationTable
+                sections={[]}
+                />
             </form>
             <Footer/>
         </div>

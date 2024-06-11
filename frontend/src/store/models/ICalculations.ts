@@ -1,3 +1,4 @@
+import { IObject } from "./IObject"
 import { ISectionDetail } from "./ISections"
 
 export interface ICalculatingCreate {
@@ -12,6 +13,7 @@ export interface ICalculating extends ICalculatingCreate {
     user: number
 }
 
-export interface ICalculatingDetail extends ICalculating {
+export interface ICalculatingDetail extends Omit<ICalculating, 'object'> {
+    object: IObject
     sections: ISectionDetail[]
 }
