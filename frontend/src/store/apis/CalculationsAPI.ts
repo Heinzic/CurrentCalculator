@@ -25,7 +25,7 @@ export const CalculationsAPI = createApi({
             query: (id) => ({
                 url:`${url}/detail/${id}`,
             }),
-            providesTags:['Calculations']
+            providesTags: ['Calculations']
         })
     })
     }

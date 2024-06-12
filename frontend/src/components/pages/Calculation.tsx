@@ -9,7 +9,6 @@ import { useGetCalculationDetailQuery } from "../../store/apis/CalculationsAPI";
 import AddSectionModal from "../elements/AddSectionModal";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import AddConsumerModal from "../elements/AddConsumerModal";
-import { useCreateConsumerMutation } from "../../store/apis/ConsumersAPI";
 
 interface ICalculationsForm {
     costumer: string
@@ -27,8 +26,6 @@ function Calculation() {
         return
     } 
     const {data, isError} = useGetCalculationDetailQuery(id)
-    const [createConsumer] = useCreateConsumerMutation()
-
 
     useEffect(() =>{
         getData(id)

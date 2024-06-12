@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { customFetchBase } from "./customFetchBase"
 import { IConsumer, IConsumerCreate, IConsumerType } from "../models/IConsumers"
+import { CalculationsAPI } from "./CalculationsAPI"
 
 const url = 'consumers'
 
@@ -21,7 +22,10 @@ export const ConsumersAPI = createApi({
                 body: consumer,
                 
             }),
-            invalidatesTags: ['Calculations']
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
+                await queryFulfilled
+                dispatch(CalculationsAPI.util.invalidateTags(['Calculations']))
+            },
         })
     }),
 })

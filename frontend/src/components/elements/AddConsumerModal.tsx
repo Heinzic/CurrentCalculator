@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useCreateConsumerMutation, useGetConsumerTypesQuery } from "../../store/apis/ConsumersAPI";
 import { ISectionDetail } from "../../store/models/ISections";
 
