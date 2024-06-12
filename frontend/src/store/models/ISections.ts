@@ -1,3 +1,4 @@
+import { IConsumer } from "./IConsumers"
 import { IInputPowerDetail } from "./IInputs"
 
 export interface ISectionCreate {
@@ -12,4 +13,5 @@ export interface ISection extends ISectionCreate {
 
 export interface ISectionDetail extends ISection {
     inputs: IInputPowerDetail[]
+    consumers: IConsumer[]
 }
