@@ -12,13 +12,16 @@ function TableHeader() {
                     <div className="">
                         Коэффициенты
                     </div>
-                    <b>Уст. м. на ед;</b>
-                    <span className="text-[#6E6E6E]"> Уст. м;</span>
-                    <b> Кп.к;</b>
-                    <span className="text-[#6E6E6E]"> Кс;</span>
-                    <b> Кн.м;</b>
-                    <span className="text-[#6E6E6E]"> Cosj;</span>
-                    <b> Tgj</b>
+                    <div className="flex gap-[5px]">
+                        <b className="text-[18px]">Уст. м. на ед;</b>
+                        <span className="text-[#6E6E6E] text-[18px]">Уст. м;</span>
+                        <b className="text-[18px] ">Кп.к;</b>
+                        <span className="text-[#6E6E6E] text-[18px]">Кс;</span>
+                        <b className="text-[18px]">Кн.м;</b>
+                        <span className="text-[#6E6E6E] text-[18px]">Cosj;</span>
+                        <b className="text-[18px]">Tgj</b>
+                    </div>
+                    
                 </div>
             </div> 
     </>

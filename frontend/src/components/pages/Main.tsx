@@ -13,7 +13,7 @@ function Main() {
     return (
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
-            <div className="max-w-[1320px] mx-auto mt-[20px] flex-grow h-[1000px]">
+            <div className="max-w-[1320px] mx-auto mt-[20px] flex-grow">
                 <div className="flex flex-row">
                     <div className="flex-grow"></div>
                     <div className="flex flex-row gap-[27px] mx-auto">
@@ -35,7 +35,6 @@ function Main() {
                             key={e.id}
                             />                        
                     ))}
-
                 </div>
             </div>
             <Footer/>

@@ -26,11 +26,24 @@ export const ConsumersAPI = createApi({
                 await queryFulfilled
                 dispatch(CalculationsAPI.util.invalidateTags(['Calculations']))
             },
+        }),
+        deleteConsumer: builder.mutation<void, number>({
+            query: (id) => ({
+                url:`${url}/${id}`,
+                method:'DELETE',
+                body: id,
+                
+            }),
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
+                await queryFulfilled
+                dispatch(CalculationsAPI.util.invalidateTags(['Calculations']))
+            },
         })
     }),
 })
 
 export const {
     useGetConsumerTypesQuery,
-    useCreateConsumerMutation
+    useCreateConsumerMutation,
+    useDeleteConsumerMutation
 } = ConsumersAPI
