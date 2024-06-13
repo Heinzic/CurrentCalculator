@@ -41,7 +41,7 @@ class Section(models.Model):
     @staticmethod
     def check_distribute(currents):
         print(currents)
-        for i in range(len(currents) - 1):
+        for i in range(0, len(currents) - 1, 2):
             cur_max = max(currents[i], currents[i + 1])
             cur_min = min(currents[i], currents[i + 1])
             ratio1 = cur_min / cur_max
@@ -66,8 +66,8 @@ class Section(models.Model):
         """Необходимо распределить потребитлей заданной мощности по следующим правилам:
         1. разделить по 2n группам так, чтобы n было минимально
         2. сумма в каждой группе не должна превышать max_power
-        3. 2k/(2k-1) > 0.85 и < 1.15
-        4. (2k-1 + 2k)/(2k+1 + 2k+2) > 0.7 и < 1.3
+        3. 2k/(2k-1) > 0.85, при условии 2k < 2k-1
+        4. (2k-1 + 2k)/(2k+1 + 2k+2) > 0.7, при условии что (2k-1 + 2k) < (2k+1 + 2k+2)
         5. квартиры делим на разные вводы
         6. лифты и лифты пп долдны быть на разных вводах
 
@@ -75,6 +75,8 @@ class Section(models.Model):
         """
         self.clear_inputs()
         consumers = self.separate_flats(Consumer.objects.filter(section__id=self.pk), count_input)
+        if len(consumers) == 0:
+            return
         inputs = [InputPower(section=self) for _ in range(count_input)]
         non_specific_consumers = []
         for i, consumer in enumerate(consumers):

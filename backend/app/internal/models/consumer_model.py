@@ -68,7 +68,7 @@ class Consumer(models.Model):
     volume = models.DecimalField(default=1, decimal_places=2, max_digits=8, verbose_name="количество")
     power_per_unit = models.DecimalField(default=10, decimal_places=3, max_digits=9, verbose_name="мощность на единицу")
     coefficient_regional = models.DecimalField(default=1, decimal_places=2, max_digits=3, verbose_name="коэф. региона")
-    coefficient_demand = models.DecimalField(default=1, decimal_places=6, max_digits=7, verbose_name="коэф. спроса")
+    coefficient_demand = models.DecimalField(default=1, decimal_places=6, max_digits=8, verbose_name="коэф. спроса")
     cos = models.DecimalField(default=0.95, decimal_places=2, max_digits=3)
 
     def __str__(self):

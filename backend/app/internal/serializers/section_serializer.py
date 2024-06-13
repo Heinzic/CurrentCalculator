@@ -1,3 +1,4 @@
+from app.internal.models.consumer_model import Consumer
 from app.internal.models.input_power_model import InputPower
 from app.internal.models.section_model import Section
 from app.internal.serializers.consumer_serializer import ConsumerSerializer
@@ -19,9 +20,18 @@ class SectionCreateSerializer(serializers.ModelSerializer):
 
 
 class SectionDetailSerializer(serializers.ModelSerializer):
-    consumers = ConsumerSerializer(source="consumer_set", many=True)
-    inputs = InputPowerSerializer(source="inputpower_set", many=True)
+    # consumers = ConsumerSerializer(source="consumer_set", many=True)
+    consumers = serializers.SerializerMethodField()
+    inputs = InputPowerDetailSerializer(source="inputpower_set", many=True)
 
     class Meta:
         model = Section
         fields = ["id", "name", "power_limit", "calculating", "inputs", "consumers"]
+
+    @staticmethod
+    def get_consumers(obj):
+        if InputPower.objects.filter(section__id=obj.id).count() > 0:
+            return []
+        consumers = ConsumerSerializer(data=Consumer.objects.filter(section__id=obj.id), many=True)
+        consumers.is_valid()
+        return consumers.data
