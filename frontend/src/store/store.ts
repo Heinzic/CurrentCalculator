@@ -6,6 +6,7 @@ import { ObjectsAPI } from './apis/ObjectsAPI';
 import { CalculationsAPI } from './apis/CalculationsAPI';
 import { SectionsAPI } from './apis/SectionAPI';
 import { ConsumersAPI } from './apis/ConsumersAPI';
+import { InputsAPI } from './apis/InputsAPI';
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     [CalculationsAPI.reducerPath]: CalculationsAPI.reducer,
     [SectionsAPI.reducerPath]: SectionsAPI.reducer,
     [ConsumersAPI.reducerPath]: ConsumersAPI.reducer,
+    [InputsAPI.reducerPath]: InputsAPI.reducer,
 })
 
 export const setupStore = () => {
@@ -28,7 +30,8 @@ export const setupStore = () => {
                 ObjectsAPI.middleware,
                 CalculationsAPI.middleware,
                 SectionsAPI.middleware,
-                ConsumersAPI.middleware
+                ConsumersAPI.middleware,
+                InputsAPI.middleware
                 ),
             
     })

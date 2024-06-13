@@ -7,11 +7,8 @@ export const LoginGuard:FC = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if(!profile.isSuccess && !profile.isLoading)
-        {
-            console.log(profile);
-            
-            navigate('/login')
-            
+        {            
+            navigate('/login')   
         }
             
     }, [profile.isLoading])
