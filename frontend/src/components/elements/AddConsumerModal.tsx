@@ -12,8 +12,8 @@ interface IConsumerForm {
     name:'',
     type:number,
     volume?: string,
-    power_per_unit: string,
-    coefficient_demand: string,
+    power_per_unit?: string,
+    coefficient_demand?: string,
     section:number
 }
 
@@ -24,14 +24,14 @@ function AddConsumerModal({active, setActive, sections}: CreateObjectProps) {
     const types = useGetConsumerTypesQuery()
     const [createConsumer] = useCreateConsumerMutation()
 
-    async function TeStCon() {
+    async function handleSubmit() {
         await createConsumer({
             name: watchAll.name,
             type: watchAll.type? watchAll.type: 1,
             section: watchAll.section,
-            coefficient_demand:watchAll.coefficient_demand,
-            power_per_unit:watchAll.power_per_unit,
-            volume:watchAll.volume
+            coefficient_demand:watchAll.coefficient_demand? watchAll.coefficient_demand: undefined,
+            power_per_unit:watchAll.power_per_unit? watchAll.power_per_unit: undefined,
+            volume:watchAll.volume? watchAll.volume: '1'
         })
         reset()
         setActive(!active)
@@ -56,9 +56,9 @@ function AddConsumerModal({active, setActive, sections}: CreateObjectProps) {
                                     <option value={e.id}>{e.name}</option>
                                 ))}
                             </select>
-                            <input {...register('volume', {required:true})} type="number" placeholder="Количество*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
-                            <input {...register('power_per_unit', {required:true})} type="number" placeholder="Мощность на единицу*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
-                            <input {...register('coefficient_demand', {required:true})} type="number" placeholder="Коэф. спроса*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
+                            <input {...register('volume', {required:true})} type="number" placeholder="Количество" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
+                            <input {...register('power_per_unit', {required:true})} type="number" placeholder="Мощность на единицу" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
+                            <input {...register('coefficient_demand', {required:true})} type="number" placeholder="Коэф. спроса" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
                             <div className="flex justify-end gap-[22px] pb-[40px] mt-[41px] items-center text-black">
                                 <button onClick={(e) => {
                                     e.preventDefault()
@@ -66,7 +66,7 @@ function AddConsumerModal({active, setActive, sections}: CreateObjectProps) {
                                 }} className="bg-[#D0D4D9] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Отмена                                
                                 </button>
-                                <button type="button" onClick={TeStCon} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
+                                <button type="button" onClick={handleSubmit} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Сохранить                                
                                 </button>
                             </div>
