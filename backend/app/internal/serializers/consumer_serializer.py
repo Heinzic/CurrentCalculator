@@ -11,6 +11,7 @@ class ConsumerTypeSerializer(serializers.ModelSerializer):
 
 class ConsumerSerializer(serializers.ModelSerializer):
     type_name = serializers.CharField(source="type.name", read_only=True)
+    type_unit_measurement = serializers.CharField(source="type.unit_measurement", read_only=True)
     total_capacity = serializers.DecimalField(decimal_places=2, max_digits=8, allow_null=True, read_only=True)
     coefficient_maximum_mismatch = serializers.DecimalField(decimal_places=2, max_digits=3, read_only=True)
     tg = serializers.DecimalField(decimal_places=2, max_digits=3, read_only=True)
@@ -28,6 +29,7 @@ class ConsumerSerializer(serializers.ModelSerializer):
             "name",
             "type",
             "type_name",
+            "type_unit_measurement",
             "volume",
             "power_per_unit",
             "total_capacity",
