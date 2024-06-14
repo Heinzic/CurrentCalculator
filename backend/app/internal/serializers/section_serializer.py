@@ -31,7 +31,9 @@ class SectionDetailSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_consumers(obj):
         if InputPower.objects.filter(section__id=obj.id).count() > 0:
-            return []
+            consumers = ConsumerSerializer(data=Consumer.objects.filter(section__id=obj.id, input__id=None), many=True)
+            consumers.is_valid()
+            return consumers.data
         consumers = ConsumerSerializer(data=Consumer.objects.filter(section__id=obj.id), many=True)
         consumers.is_valid()
         return consumers.data
