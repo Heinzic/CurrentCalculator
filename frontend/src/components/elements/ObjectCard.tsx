@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { ICalculating } from "../../models/ICalculations"
 
-interface ObjectCardProps extends ICalculating {}
+interface ObjectCardProps extends ICalculating {
+    index: number
+}
 
-function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
+function ObjectCard({id, date, annotation, costumer, object_name, object_adress, result_current, index}: ObjectCardProps) {
 
     const navigate = useNavigate()
     const handleClick = () => {
@@ -40,22 +42,22 @@ function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
                         </ul>
                         <ul className="bg-[#FFFFFF] rounded-md px-1">
                             <li className="">
-                                <span>{object}</span>
+                                <span>{object_name}</span>
                             </li>
                             <li>
-                                <span>ПОМЕНЯТЬ ПОСЛЕ АПИ</span>
+                                <span>{object_adress? object_adress: '-'}</span>
                             </li>
                             <li>
                                 <span>{costumer? costumer: '-'}</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>{index+1}</span>
                             </li>
                             <li>
                                 <span>{String(date)}</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>{result_current? result_current : '-'}</span>
                             </li>
                             <li>
                                 <span>{annotation? annotation: '-'}</span>

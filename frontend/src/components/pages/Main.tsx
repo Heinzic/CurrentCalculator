@@ -24,14 +24,10 @@ function Main() {
                     </div>
                 </div>
                 <div className="flex flex-row flex-wrap justify-between">
-                    {calc && calc.slice(0).reverse().map(e => (
+                    {calc && calc.slice(0).reverse().map((e, index) => (
                         <ObjectCard
-                            date={e.date} 
-                            user={e.user} 
-                            object={e.object}
-                            annotation={e.annotation}
-                            costumer={e.costumer}
-                            id={e.id}
+                            {...e}
+                            index={index}
                             key={e.id}
                             />                        
                     ))}
