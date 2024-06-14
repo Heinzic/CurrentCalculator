@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { customFetchBase } from "./customFetchBase"
-import { IUser } from "../models/IAuth"
-import { tokenService } from "../services/TokenService"
+import { IUser } from "../../models/IAuth"
+import { tokenService } from "../../services/TokenService"
 
 
 const url = 'users'

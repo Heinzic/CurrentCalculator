@@ -1,8 +1,8 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
-import { tokenService } from "../services/TokenService";
+import { tokenService } from "../../services/TokenService";
 import axios from "axios";
-import { IToken } from "../models/IToken";
+import { IToken } from "../../models/IToken";
 
 
 const mutex = new Mutex()

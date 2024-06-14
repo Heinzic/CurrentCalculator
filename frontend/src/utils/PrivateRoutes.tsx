@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../store/store";
 import { Navigate, Outlet } from "react-router-dom";
-import { useLoadMyProfileQuery } from "../apis/UserAPI";
+import { useLoadMyProfileQuery } from "../store/apis/UserAPI";
 
 interface PrivateRouteProps {
     isAuth: boolean

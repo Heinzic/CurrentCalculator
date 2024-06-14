@@ -1,4 +1,4 @@
-import { ISectionDetail } from "../../store/models/ISections";
+import { ISectionDetail } from "../../models/ISections";
 import TableHeader from "./TableHeader";
 import TableSectionRow from "./TableSection";
 

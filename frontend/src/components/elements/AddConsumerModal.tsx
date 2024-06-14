@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useCreateConsumerMutation, useGetConsumerTypesQuery } from "../../store/apis/ConsumersAPI";
-import { ISectionDetail } from "../../store/models/ISections";
+import { ISectionDetail } from "../../models/ISections";
 
 interface CreateObjectProps {
     active: boolean

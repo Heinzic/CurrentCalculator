@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { ICalculating } from "../../store/models/ICalculations"
+import { ICalculating } from "../../models/ICalculations"
 
 interface ObjectCardProps extends ICalculating {}
 
@@ -43,10 +43,10 @@ function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
                                 <span>{object}</span>
                             </li>
                             <li>
-                                <span>ЖК Легион</span>
+                                <span>ПОМЕНЯТЬ ПОСЛЕ АПИ</span>
                             </li>
                             <li>
-                                <span>{costumer}</span>
+                                <span>{costumer? costumer: '-'}</span>
                             </li>
                             <li>
                                 <span>ЖК Легион</span>
@@ -58,7 +58,7 @@ function ObjectCard({id, date, object, annotation, costumer}: ObjectCardProps) {
                                 <span>ЖК Легион</span>
                             </li>
                             <li>
-                                <span>{annotation}</span>
+                                <span>{annotation? annotation: '-'}</span>
                             </li>
                         </ul>
                     </div>

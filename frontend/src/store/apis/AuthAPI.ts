@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { ILogin, IUser, IUserRegister } from "../models/IAuth";
+import { ILogin, IUser, IUserRegister } from "../../models/IAuth";
 import { customFetchBase } from "./customFetchBase";
 
 

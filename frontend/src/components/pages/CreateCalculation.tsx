@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGetObjectsListQuery } from "../../store/apis/ObjectsAPI";
 import RadioObjectsList from "../elements/RadioObjectsList";
 import { useForm } from "react-hook-form";
-import { ICalculatingCreate } from "../../store/models/ICalculations";
+import { ICalculatingCreate } from "../../models/ICalculations";
 import { useCreateCalculationMutation } from "../../store/apis/CalculationsAPI";
 import { useNavigate } from "react-router-dom";
 
@@ -97,10 +97,10 @@ function CreateCalculation() {
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
                     <div className="flex gap-[19px]">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200" disabled>
+                        <button className="px-[40px] py-[8px] rounded-md disabled:bg-[#bce4f0]" disabled>
                             Добавить потребителя
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md" type="button"
+                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-[#bce4f0]" type="button"
                         onClick={(e) => {
                             e.preventDefault()
                             handleAddSection(
@@ -108,15 +108,16 @@ function CreateCalculation() {
                                 annotation: watchAll.annotation,
                                 object: objects.data?.find(object => object.name === objectSelected)?.id as number})
                         }}
+                        disabled={objectSelected ===''}
                         >
                             Добавить ВРУ
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200" disabled>
+                        <button className="px-[40px] rounded-md bg-[#bce4f0]" disabled>
                             Распеределить по ВРУ
                         </button>
                     </div>
                     <div className="">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md">
+                        <button className="bg-[#bce4f0] px-[40px] py-[8px] rounded-md" disabled>
                             Предварительный просмотр
                         </button>
                     </div>

@@ -3,9 +3,9 @@ import Main from './components/pages/Main';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Profile from './components/pages/Profile';
-import PrivateRoutes from './store/utils/PrivateRoutes';
+import PrivateRoutes from './utils/PrivateRoutes';
 import CreateCalculation from './components/pages/CreateCalculation';
-import {LoginGuard} from './store/hocs/LoginGuard';
+import {LoginGuard} from './hocs/LoginGuard';
 import Calculation from './components/pages/Calculation';
 
 function App() {

@@ -15,7 +15,7 @@ interface ISectionForm {
 
 function AddSectionModal({active, setActive, id}: CreateObjectProps) {
     
-    const {register, watch} = useForm<ISectionForm>({mode:'onBlur'})
+    const {register, watch, formState} = useForm<ISectionForm>({mode:'onBlur'})
     const watchAll = watch()
     const [createSection] = useCreateSectionMutation()
 
@@ -31,7 +31,7 @@ function AddSectionModal({active, setActive, id}: CreateObjectProps) {
                         <div className="flex flex-col px-[38px] gap-[10px] pt-[41px] bg-[#FFFFFF] rounded-md text-black">
                             <h1 className="text-[32px]">Создание ВРУ</h1>
                             <input {...register('name', {required: true})} type="text" placeholder="Имя ВРУ*" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
-                            <input {...register('power_limit')} type="number" placeholder="Ограничение мощности" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
+                            <input {...register('power_limit', {required: true})} type="number" placeholder="Ограничение мощности" className="py-[6px] px-[25px] flex-grow bg-[#EBEBEB] rounded-md text-xl"/>
                             <div className="flex justify-end gap-[22px] pb-[40px] mt-[41px] items-center text-black">
                                 <button onClick={(e) => {
                                     e.preventDefault()
@@ -39,7 +39,7 @@ function AddSectionModal({active, setActive, id}: CreateObjectProps) {
                                 }} className="bg-[#D0D4D9] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Отмена                                
                                 </button>
-                                <button type="submit" onClick={handleAdd} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
+                                <button type="submit" onClick={handleAdd} disabled={!formState.isDirty || !formState.isValid} className="bg-[#9AA8B0] disabled:bg-[#bce4f0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Сохранить                                
                                 </button>
                             </div>

@@ -5,7 +5,7 @@ import CalculationTable from "../elements/CalculationTable";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
-import { useGetCalculationDetailQuery } from "../../store/apis/CalculationsAPI";
+import { useDistributeInputsMutation, useGetCalculationDetailQuery } from "../../store/apis/CalculationsAPI";
 import AddSectionModal from "../elements/AddSectionModal";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import AddConsumerModal from "../elements/AddConsumerModal";
@@ -26,6 +26,7 @@ function Calculation() {
         return
     } 
     const {data, isError} = useGetCalculationDetailQuery(id)
+    const [distributeInputs] = useDistributeInputsMutation()
 
     useEffect(() =>{
         getData(id)
@@ -38,6 +39,7 @@ function Calculation() {
     const [objectOpen, setObjectOpen] = useState(false)
     const [consumerModalActive, setConsumerModalActive] = useState(false)
     const [sectionModalActive, setSectionModalActive] = useState(state)
+    const [inputsError, setInputsError] = useState('')
     
     const {register} = useForm<ICalculationsForm>({mode:"onBlur"})
 
@@ -54,7 +56,7 @@ function Calculation() {
     return (data) && ( 
         <div className="min-h-[100vh] h-[100vh] flex flex-col">
             <Header/>
-            <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow h-[1000px] flex flex-col gap-[14px]">
+            <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow flex flex-col gap-[14px]">
                 <h1 className="my-0 ">Создание расчета мощности</h1>
                 <div className="flex gap-[24px] ">
                     <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md" type="button">
@@ -100,16 +102,22 @@ function Calculation() {
                         >
                             Добавить ВРУ
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200">
+                        <button type="button" onClick={async () => {
+                            if((await distributeInputs(id)).error) {
+                                    setInputsError('Не удалось распределить потребителей')
+                            }
+                        }} 
+                        className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200">
                             Распеределить по ВРУ
                         </button>
                     </div>
                     <div className="">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md">
+                        <button className="bg-[#bce4f0] px-[40px] py-[8px] rounded-md" disabled>
                             Предварительный просмотр
                         </button>
                     </div>
                 </div>
+                {<p className="text-red-600">{inputsError}</p>}
                 <div className="">
                     <CalculationTable
                     sections={data.sections}

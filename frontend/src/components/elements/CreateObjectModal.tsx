@@ -15,7 +15,7 @@ interface IObjectForm {
 
 function CreateObjectModal({active, setActive}: CreateObjectProps) {
     
-    const {register, handleSubmit} = useForm<IObjectForm>({mode:'onBlur'})
+    const {register, handleSubmit, formState} = useForm<IObjectForm>({mode:'onBlur'})
     const [createObject] = useCreateObjectMutation()
 
     const submit: SubmitHandler<IObjectForm> = async (data) => {
@@ -44,7 +44,7 @@ function CreateObjectModal({active, setActive}: CreateObjectProps) {
                                 }} className="bg-[#D0D4D9] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Отмена                                
                                 </button>
-                                <button type="submit" className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
+                                <button type="submit" disabled={!formState.isDirty || !formState.isValid} className="bg-[#9AA8B0] disabled:bg-[#bce4f0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Сохранить                                
                                 </button>
                             </div>

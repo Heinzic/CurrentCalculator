@@ -12,7 +12,7 @@ function TableHeader() {
                     <div className="">
                         Коэффициенты
                     </div>
-                    <div className="flex gap-[5px]">
+                    <div className="flex gap-[5px] text-nowrap justify-center">
                         <b className="text-[18px]">Уст. м. на ед;</b>
                         <span className="text-[#6E6E6E] text-[18px]">Уст. м;</span>
                         <b className="text-[18px] ">Кп.к;</b>
@@ -21,7 +21,6 @@ function TableHeader() {
                         <span className="text-[#6E6E6E] text-[18px]">Cosj;</span>
                         <b className="text-[18px]">Tgj</b>
                     </div>
-                    
                 </div>
             </div> 
     </>

@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useLoadMyProfileQuery } from "../apis/UserAPI";
+import { useLoadMyProfileQuery } from "../store/apis/UserAPI";
 import { FC, useEffect } from "react";
 
 export const LoginGuard:FC = () => {

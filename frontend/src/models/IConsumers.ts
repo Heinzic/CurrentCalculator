@@ -17,6 +17,7 @@ export interface IConsumer {
     qp?: string
     sp?: string
     result_current?: string
+    type_unit_measurement?: string
 }
 
 export interface IConsumerType {

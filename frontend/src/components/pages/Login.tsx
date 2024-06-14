@@ -15,7 +15,7 @@ function Login() {
 
     const [logIn, ] = useLogInUserMutation()
     const navigate = useNavigate()
-    const {register, handleSubmit, formState:{errors, }, resetField, setError} = useForm<ILoginForm>({mode:'onBlur'})
+    const {register, handleSubmit, formState:{errors, isDirty, isValid }, resetField, setError} = useForm<ILoginForm>({mode:'onBlur'})
 
     const submit: SubmitHandler<ILoginForm> = async (data) => {
         const response =  await logIn(data)
@@ -51,7 +51,7 @@ function Login() {
                                 <span className="text-[#454F55]">
                                     Нет аккаунта? <NavLink to={'/register'} className="underline text-black">Регистрация</NavLink>  
                                 </span>
-                                <button type="submit" className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
+                                <button type="submit" disabled={!isDirty || !isValid} className="bg-[#9AA8B0] disabled:bg-[#bce4f0] px-[18px] py-[10px] rounded-md flex-grow max-w-[241px] text-center border-[1px] hover:border-gray-700">
                                     Войти                                
                                 </button>
                             </div>

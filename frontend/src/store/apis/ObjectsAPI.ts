@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { customFetchBase } from "./customFetchBase"
-import { IObject } from "../models/IObject"
-import { tokenService } from "../services/TokenService"
+import { IObject } from "../../models/IObject"
+import { tokenService } from "../../services/TokenService"
 
 
 const url = 'objects'

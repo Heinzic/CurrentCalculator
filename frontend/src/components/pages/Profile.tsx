@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import Footer from "../base/Footer"
 import Header from "../base/Header"
 import { useLogOutUserMutation } from "../../store/apis/AuthAPI"
-import { tokenService } from "../../store/services/TokenService"
+import { tokenService } from "../../services/TokenService"
 import { RootState } from "../../store/store"
-import { IUser } from "../../store/models/IAuth"
+import { IUser } from "../../models/IAuth"
 import { connect } from "react-redux"
 
 interface ProfileProps{
@@ -14,11 +14,13 @@ interface ProfileProps{
 function Profile({user}:ProfileProps) {
 
     const [logOut, {}] = useLogOutUserMutation()
+    const navigate = useNavigate()
     const handleLogOut = () => {
         const refresh = tokenService.getLocalRefreshToken()
         if (refresh) {
             logOut(refresh)
         }
+        navigate('/login')
     }
 
     return (

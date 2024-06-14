@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { customFetchBase } from "./customFetchBase"
-import { ICalculatingCreate, ICalculating, ICalculatingDetail } from "../models/ICalculations"
+import { ICalculatingCreate, ICalculating, ICalculatingDetail } from "../../models/ICalculations"
 
 const url = 'calculations'
 
@@ -26,6 +26,13 @@ export const CalculationsAPI = createApi({
                 url:`${url}/detail/${id}`,
             }),
             providesTags: ['Calculations']
+        }),
+        distributeInputs: builder.mutation<ICalculatingDetail, string>({
+            query: (id) => ({
+                url:`${url}/distribute/${id}`,
+                method:'GET'
+            }),
+            invalidatesTags: ['Calculations']
         })
     })
     }
@@ -34,5 +41,6 @@ export const CalculationsAPI = createApi({
 export const {
     useCreateCalculationMutation,
     useGetCalculationsListQuery,
-    useGetCalculationDetailQuery
+    useGetCalculationDetailQuery,
+    useDistributeInputsMutation
 } = CalculationsAPI

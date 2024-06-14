@@ -1,5 +1,5 @@
 import React from "react";
-import { IObject } from "../../store/models/IObject";
+import { IObject } from "../../models/IObject";
 
 interface RadioListProps {
     array: IObject[]
