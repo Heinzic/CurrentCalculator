@@ -59,10 +59,10 @@ function Calculation() {
             <form className="max-w-[1740px] w-[100%] mx-auto mt-[20px] flex-grow flex flex-col gap-[14px]">
                 <h1 className="my-0 ">Создание расчета мощности</h1>
                 <div className="flex gap-[24px] ">
-                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md" type="button">
+                    <button className="bg-[#9AA8B0] px-[50px] py-[8px] rounded-md border-[1px] hover:border-gray-700" type="button" onClick={() => navigate('/')}>
                         Сохранить
                     </button>
-                    <button className="bg-[#D0D4D9] px-[40px] rounded-md">
+                    <button className="bg-[#D0D4D9] px-[40px] rounded-md border-[1px] hover:border-gray-700" onClick={() => navigate('/')}>
                         Назад
                     </button>
                 </div>
@@ -83,18 +83,18 @@ function Calculation() {
                 </div>
                 <div className="flex flex-row gap-[17px]">
                     <div className="">
-                        <input {...register('costumer')} type="text" placeholder={data?.costumer} value={data?.costumer? data.costumer : ''} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('costumer')} type="text" placeholder={data?.costumer} value={data?.costumer? data.costumer : 'Заказчик'} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                     <div className="">
-                        <input {...register('annotation')} type="text" placeholder={data?.annotation} value={data?.annotation? data.annotation : ''} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
+                        <input {...register('annotation')} type="text" placeholder={data?.annotation} value={data?.annotation? data.annotation : 'Примечание'} className="flex items-center text-[20px] gap-[8px] py-[8px] px-[22px] ml-auto text-[#454F55] bg-[#EBEBEB] rounded-md w-[510px]"/>
                     </div>
                 </div>
                 <div className="flex flex-row gap-[17px] justify-between">
                     <div className="flex gap-[19px]">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200" onClick={(e) => handleClick(e, consumerModalActive, setConsumerModalActive)}>
+                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md disabled:bg-slate-200 border-[1px] hover:border-gray-700" onClick={(e) => handleClick(e, consumerModalActive, setConsumerModalActive)}>
                             Добавить потребителя
                         </button>
-                        <button className="bg-[#D0D4D9] px-[40px] rounded-md" type="button"
+                        <button className="bg-[#D0D4D9] px-[40px] rounded-md border-[1px] hover:border-gray-700" type="button"
                         onClick={(e) => {
                             e.preventDefault()
                             setSectionModalActive(!sectionModalActive)
@@ -107,7 +107,7 @@ function Calculation() {
                                     setInputsError('Не удалось распределить потребителей')
                             }
                         }} 
-                        className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200">
+                        className="bg-[#D0D4D9] px-[40px] rounded-md disabled:bg-slate-200 border-[1px] hover:border-gray-700">
                             Распеределить по ВРУ
                         </button>
                     </div>

@@ -17,7 +17,7 @@ function Main() {
                 <div className="flex flex-row">
                     <div className="flex-grow"></div>
                     <div className="flex flex-row gap-[27px] mx-auto">
-                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md">
+                        <button className="bg-[#D0D4D9] px-[40px] py-[8px] rounded-md border-[1px] hover:border-gray-700">
                             Фильтр
                         </button>
                         <Search/>

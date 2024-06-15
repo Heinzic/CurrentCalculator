@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Footer from "../base/Footer"
 import Header from "../base/Header"
 import { useLogOutUserMutation } from "../../store/apis/AuthAPI"
@@ -44,12 +44,12 @@ function Profile({user}:ProfileProps) {
                             </div>
                             <div className="flex pb-[40px] mt-[41px] items-center gap-[90px]">
                                 <div className="flex gap-[20px]">
-                                    <NavLink to={'/'} className="bg-[#D0D4D9] px-[18px] py-[10px] rounded-md text-center border-[1px] hover:border-gray-700">
+                                    <button disabled className="bg-[#bce4f0] px-[18px] py-[10px] rounded-md text-center border-[1px] hover:border-gray-700">
                                         Сменить пароль                              
-                                    </NavLink>
-                                    <NavLink to={'/'} className="bg-[#D0D4D9] px-[18px] py-[10px] rounded-md text-center border-[1px] hover:border-gray-700 w-[190px]">
+                                    </button>
+                                    <button disabled className="bg-[#bce4f0] px-[18px] py-[10px] rounded-md text-center border-[1px] hover:border-gray-700 w-[190px]">
                                         Редактировать                              
-                                    </NavLink>
+                                    </button>
                                 </div>
                                 <button onClick={handleLogOut} className="bg-[#9AA8B0] px-[18px] py-[10px] rounded-md flex-grow max-w-[220px] text-center border-[1px] hover:border-gray-700">
                                     Выйти из аккаунта                                

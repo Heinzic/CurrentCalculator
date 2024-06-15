@@ -66,10 +66,10 @@ function ObjectCard({id, date, annotation, costumer, object_name, object_adress,
                     </div>
                     <div className="mt-[10px] flex justify-between">
                         <div className="flex gap-[8px]">
-                            <button className="bg-[#9AA8B0] px-[18px] rounded-md">
+                            <button className="bg-[#9AA8B0] px-[18px] rounded-md" disabled>
                                 Экспорт xlsx
                             </button>
-                            <button className="bg-[#9AA8B0] px-[18px] rounded-md">
+                            <button className="bg-[#9AA8B0] px-[18px] rounded-md" disabled>
                                 Экспорт PDF
                             </button>
                         </div>
